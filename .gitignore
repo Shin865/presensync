@@ -2,6 +2,8 @@
 /public/build
 /public/hot
 /vendor
+Storage/app/public/uploads/absensi/
+Storage/app/public/uploads/karyawan/
 .env.backup
 .env.production
 .phpunit.result.cache
