@@ -30,4 +30,9 @@ class KonfigurasiController extends Controller
             return Redirect::back()->with('error', 'Lokasi kantor gagal diubah');
         }
     }
+
+    public function jamkerja(){
+        return view('konfigurasi.jamkerja');
+    }
+
 }

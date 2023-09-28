@@ -20,7 +20,7 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <form action="/presensi/cetaklaporan" target="_blank" method="POST">
+                    <form action="/presensi/cetaklaporan" id="formlaporan" target="_blank" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -78,7 +78,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <button type="submit" name="exportexcel" class="btn btn-success w-100">
+                                    <button type="submit" name="exportword" class="btn btn-success w-100">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-spreadsheet" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
@@ -87,7 +87,7 @@
                                             <path d="M8 15h8"></path>
                                             <path d="M11 11v7"></path>
                                          </svg>
-                                        Export Excel
+                                        Export Document
                                     </button>
                                 </div>
                             </div>
@@ -99,3 +99,24 @@
     </div>
 </div>
 @endsection
+@push('myscript')
+    <script>
+        $(function(){
+            $('#formlaporan').submit(function(e){
+                var bulan = $('#bulan').val();
+                var tahun = $('#tahun').val();
+                var nik = $('#nik').val();
+                if(bulan == "" || tahun == "" || nik == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal',
+                    text: 'Semua field harus diisi',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                return false;
+            }
+            });
+        });
+    </script>
+@endpush

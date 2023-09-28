@@ -62,6 +62,9 @@ class KaryawanController extends Controller
                return Redirect::back()->with(['success' => 'Data Berhasil di Simpan']);  
             }    
         }catch(\Exception $e){
+            if($e->getCode() == 23000){
+                return Redirect::back()->with(['error' => 'NIK Sudah Terdaftar']);
+            }
             return Redirect::back()->with(['error' => 'Data Gagal di Simpan']);
         }
     }

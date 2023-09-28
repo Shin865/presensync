@@ -286,6 +286,13 @@ class PresensiController extends Controller
             11 => 'November',
             12 => 'Desember'
         );
+        if(isset($_POST['exportword'])){
+            $time = date('H:i:s');
+            header("Content-type: application/vnd.ms-word");
+            header("Content-Disposition: attachment; filename=Rekap Presensi ".$nik." ".$bln[$bulan]." ".$tahun." ".$time.".doc");
+            return view('presensi.cetaklaporanword',compact ('presensi','bln','karyawan','bulan','tahun'));
+        }
+
         return view('presensi.cetaklaporan',compact ('presensi','bln','karyawan','bulan','tahun'));
     }
 
@@ -366,6 +373,12 @@ class PresensiController extends Controller
             12 => 'Desember'
         );
         
+        if(isset($_POST['exportexcel'])){
+            $time = date('H:i:s');
+            header("Content-type: application/vnd-ms-excel");
+            header("Content-Disposition: attachment; filename=Rekap Presensi ".$bln[$bulan]." ".$tahun." ".$time.".xls");
+        }
+
         return view('presensi.cetakrekap',compact ('rekap','bln','bulan','tahun'));
     }
 

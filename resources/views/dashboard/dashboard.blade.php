@@ -4,14 +4,14 @@
 <div id="appCapsule">
     <div class="section" id="user-section">
         <div class="row">
-                <div class="col-12">
+        <div class="col-12">
         <div id="user-detail">
             <div class="avatar">
                 @if(!empty(Auth::guard('karyawan')->user()->foto))
                 @php
                     $path = Storage::url('uploads/karyawan/'.Auth::guard('karyawan')->user()->foto)
                 @endphp
-                <img src="{{ url($path) }}" alt="avatar" class="imaged w64" style="height: 95%">
+                <img src="{{ url($path) }}" alt="avatar" class="imaged w64" style="height: 85%">
                 @else
                 <img src="assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
                 @endif
@@ -119,7 +119,7 @@
                             <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekappresensi->jmltelat }}</span>
                             <ion-icon name="alarm" style="font-size: 1.7rem" class="text-danger mb-1"></ion-icon>
                             <br>
-                            <span style="font-size: 0.7rem; font-weight:500">Terlambat</span>
+                            <span style="font-size: 0.6rem; font-weight:500">Terlambat</span>
                         </div>
                     </div>
                 </div>
