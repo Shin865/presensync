@@ -23,7 +23,8 @@
                   <div class="card-body">
                     <div class="row align-items-center">
                       <div class="col-auto">
-                        <span class="bg-success text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
+                        <a href="/presensi/monitoring">
+                        <span class="bg-success text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->   
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-fingerprint" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3"></path>
@@ -31,8 +32,9 @@
                                 <path d="M12 11v2a14 14 0 0 0 2.5 8"></path>
                                 <path d="M8 15a18 18 0 0 0 1.8 6"></path>
                                 <path d="M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95"></path>
-                             </svg>
+                             </svg>  
                         </span>
+                      </a>
                       </div>
                       <div class="col">
                         <div class="font-weight-medium">
@@ -51,8 +53,9 @@
                   <div class="card-body">
                     <div class="row align-items-center">
                       <div class="col-auto">
-                        <span class="bg-info text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <a href="/presensi/izinsakit">
+                        <span class="bg-info text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->  
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
                                 <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
@@ -61,6 +64,7 @@
                                 <path d="M9 17l6 0"></path>
                              </svg>
                         </span>
+                      </a>
                       </div>
                       <div class="col">
                         <div class="font-weight-medium">
@@ -79,6 +83,7 @@
                   <div class="card-body">
                     <div class="row align-items-center">
                       <div class="col-auto">
+                        <a href="/presensi/izinsakit">
                         <span class="bg-warning text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-report-medical" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -88,6 +93,7 @@
                                 <path d="M12 12l0 4"></path>
                              </svg>
                         </span>
+                      </a>
                       </div>
                       <div class="col">
                         <div class="font-weight-medium">
@@ -106,6 +112,7 @@
                   <div class="card-body">
                     <div class="row align-items-center">
                       <div class="col-auto">
+                        <a href="/presensi/monitoring">
                         <span class="bg-danger text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alarm-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -114,6 +121,7 @@
                                 <path d="M16.191 3.412a1 1 0 0 1 1.291 -.288l.106 .067l2.75 2a1 1 0 0 1 -1.07 1.685l-.106 -.067l-2.75 -2a1 1 0 0 1 -.22 -1.397z" stroke-width="0" fill="currentColor"></path>
                              </svg>
                         </span>
+                        </a>
                       </div>
                       <div class="col">
                         <div class="font-weight-medium">

@@ -43,7 +43,7 @@
       <circle cx="12" cy="7.5" r=".5" fill="currentColor"></circle>
    </svg>
   </span>
-  <input type="text" id="jabatan" value="{{ $karyawan->jabatan }}" class="form-control" name="jabatan" placeholder="Jabatan">
+  <input type="text" id="pangkat" value="{{ $karyawan->pangkat }}" class="form-control" name="pangkat" placeholder="pangkat">
 </div>
 </div>
 </div>
@@ -71,7 +71,7 @@
 <div class="row mt-2">
 <div class="col-12">
 <select name="kode_dept" id="kode_dept" class="form-select">
-  <option value="">-- Pilih Departemen --</option>
+  <option value="">-- Pilih Jabatan --</option>
   @foreach ($departemen as $item)
   <option {{ $karyawan->kode_dept == $item->kode_dept ? 'selected' : ''  }} value="{{ $item->kode_dept }}">{{ $item->nama_dept }}</option>
   @endforeach

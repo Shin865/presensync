@@ -46,7 +46,7 @@
                                             <th>No</th>
                                             <th>NIK</th>
                                             <th>Nama</th>
-                                            <th>Departemen</th>
+                                            <th>pangkat</th>
                                             <th>Jam Masuk</th>
                                             <th>Foto</th>
                                             <th>Jam Pulang</th>

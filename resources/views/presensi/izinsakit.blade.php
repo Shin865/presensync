@@ -117,7 +117,7 @@
                             <th>NIK</th>
                             <th>Tanggal</th>
                             <th>Nama</th>
-                            <th>Jabatan</th>
+                            <th>pangkat</th>
                             <th>Status</th>
                             <th>Keterangan</th>
                             <th>Status Approve</th>
@@ -131,7 +131,7 @@
                                 <td>{{ $item->nik }}</td>
                                 <td>{{ date('d-m-Y',strtotime($item->tgl_izin)) }}</td>
                                 <td>{{ $item->nama_lengkap }}</td>
-                                <td>{{ $item->jabatan }}</td>
+                                <td>{{ $item->pangkat }}</td>
                                 <td>{{ $item->status == "i" ? "Izin" : "Sakit" }}</td>
                                 <td>{{ $item->keterangan }}</td>
                                 <td>

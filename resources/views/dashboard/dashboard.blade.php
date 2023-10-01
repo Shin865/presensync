@@ -6,19 +6,21 @@
         <div class="row">
         <div class="col-12">
         <div id="user-detail">
+            <a href="/editprofile">
             <div class="avatar">
                 @if(!empty(Auth::guard('karyawan')->user()->foto))
                 @php
                     $path = Storage::url('uploads/karyawan/'.Auth::guard('karyawan')->user()->foto)
                 @endphp
-                <img src="{{ url($path) }}" alt="avatar" class="imaged w64" style="height: 85%">
+                <img src="{{ url($path) }}" alt="avatar" class="imaged w64" style="height: 70px">
                 @else
                 <img src="assets/img/sample/avatar/avatar1.jpg" alt="avatar" class="imaged w64 rounded">
                 @endif
             </div>
+            </a>
             <div id="user-info">
                 <h2 id="user-name">{{ Auth::guard('karyawan')->user()->nama_lengkap }}</h2>
-                <span id="user-role">{{ Auth::guard('karyawan')->user()->jabatan }}</span>
+                <span id="user-role">{{ Auth::guard('karyawan')->user()->pangkat }}</span>
             </div>
             <div>
                 <a href="/proseslogout" class="btn btn-danger btn-sm" style="position: absolute; right:1%; top:1%; font-size:0,8rem; z-index:999">
@@ -45,7 +47,9 @@
                                     @endphp
                                     <img src="{{ url($path) }}" alt="image" class="imaged w48">
                                     @else
+                                    <a href="/presensi/create" style="color: white">
                                     <ion-icon name="camera"></ion-icon>
+                                    </a>
                                     @endif
                                 </div>
                                 <div class="presencedetail">
@@ -67,7 +71,9 @@
                                     @endphp
                                     <img src="{{ url($path) }}" alt="image" class="imaged w48">
                                     @else
+                                    <a href="/presensi/create" style="color: white">
                                     <ion-icon name="camera"></ion-icon>
+                                    </a>
                                     @endif
                                 </div>
                                 <div class="presencedetail">
@@ -85,42 +91,50 @@
             <div class="row">
                 <div class="col-3">
                     <div class="card">
+                        <a href="/presensi/histori" style="color: black">
                         <div class="card-body text-center" style="padding: 16px 12px !important line-height:0.8rem">
                             <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekappresensi->jmlhadir }}</span>
                             <ion-icon name="accessibility" style="font-size: 1.7rem" class="text-primary mb-1"></ion-icon>
                             <br>
                             <span style="font-size: 0.8rem; font-weight:500">Hadir</span>
                         </div>
+                    </a>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="card">
+                        <a href="/presensi/izin" style="color: black">
                         <div class="card-body text-center" style="padding: 16px 12px !important line-height:0.8rem">
                             <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekapizin->jmlizin }}</span>
                             <ion-icon name="document-text" style="font-size: 1.7rem" class="text-success mb-1"></ion-icon>
                             <br>
                             <span style="font-size: 0.8rem; font-weight:500">Izin</span>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="card">
+                        <a href="/presensi/izin" style="color: black">
                         <div class="card-body text-center" style="padding: 16px 12px !important line-height:0.8rem">
                             <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekapizin->jmlsakit }}</span>
                             <ion-icon name="medkit" style="font-size: 1.7rem" class="text-warning mb-1"></ion-icon>
                             <br>
                             <span style="font-size: 0.8rem; font-weight:500">Sakit</span>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="card">
+                        <a href="/presensi/histori" style="color: black">
                         <div class="card-body text-center" style="padding: 16px 12px !important line-height:0.8rem">
                             <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekappresensi->jmltelat }}</span>
                             <ion-icon name="alarm" style="font-size: 1.7rem" class="text-danger mb-1"></ion-icon>
                             <br>
                             <span style="font-size: 0.6rem; font-weight:500">Terlambat</span>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -169,7 +183,7 @@
                                 <div class="in">
                                     <div>
                                         {{ $d->nama_lengkap }}
-                                        <small class="text-muted">{{ $d->jabatan }}</small>
+                                        <small class="text-muted">{{ $d->pangkat }}</small>
                                     </div>
                                     <span class="badge {{ $d->jam_in < "07:00" ? "bg-success" : "bg-danger" }}">{{ $d->jam_in }}</span>
                                 </div>

@@ -110,12 +110,12 @@
         <td>{{ $karyawan->nama_lengkap }}</td>
     </tr>
     <tr>
-        <td>Jabatan</td>
+        <td>pangkat</td>
         <td>:</td>
-        <td>{{ $karyawan->jabatan }}</td>
+        <td>{{ $karyawan->pangkat }}</td>
     </tr>
     <tr>
-        <td>Departemen</td>
+        <td>Nama Jabatan</td>
         <td>:</td>
         <td>{{ $karyawan->nama_dept }}</td>
     </tr>

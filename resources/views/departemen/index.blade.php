@@ -6,10 +6,10 @@
         <div class="col">
           <!-- Page pre-title -->
           <div class="page-pretitle">
-            Departemen
+            Jabatan
           </div>
           <h2 class="page-title">
-            Data Departemen
+            Data Jabatan
           </h2>
         </div>
       </div>
@@ -49,7 +49,7 @@
                           <div class="col-10">
                             <div class="form-group">
                               <input type="text" name="nama_dept" id="nama_dept" class="form-control" 
-                              placeholder="Departemen" value="{{ Request('nama_dept') }}">
+                              placeholder="Jabatan" value="{{ Request('nama_dept') }}">
                             </div>
                         </div>
                           <div class="col-2">
@@ -73,8 +73,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Dept</th>
-                                <th>Nama Dept</th>
+                                <th>Kode Jabatan</th>
+                                <th>Nama Jabatan</th>
                                 <th>Aksi</th>
                             </tr>   
                         </thead>
@@ -122,7 +122,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Tambah Data Departemen</h5>
+          <h5 class="modal-title">Tambah Data Jabatan</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -142,7 +142,7 @@
                       <path d="M19 16v6"></path>
                    </svg>
                   </span>
-                  <input type="text" id="nik" value="" class="form-control" name="kode_dept" placeholder="Kode_Dept">
+                  <input type="text" id="nik" value="" class="form-control" name="kode_dept" placeholder="Kode_Jabatan">
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@
                       <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                     </svg>
                   </span>
-                  <input type="text" id="nama_dept" value="" name="nama_dept" class="form-control" placeholder="Nama Departemen">
+                  <input type="text" id="nama_dept" value="" name="nama_dept" class="form-control" placeholder="Nama Jabatan">
                 </div>
               </div>
             </div>
@@ -184,7 +184,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Edit Data Departemen</h5>
+          <h5 class="modal-title">Edit Data Jabatan</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="loadeditform">
@@ -244,10 +244,10 @@
     $("#formKaryawan").submit(function(){
       var nik = $("#nik").val();
       var nama_lengkap = $("#nama_lengkap").val();
-      var jabatan = $("#jabatan").val();
+      var pangkat = $("#pangkat").val();
       var no_hp = $("#no_hp").val();
       var kode_dept = $("formKaryawan").find("#kode_dept").val();
-      if(nik == "" || nama_lengkap == "" || jabatan == "" || no_hp == "" || kode_dept == "") {
+      if(nik == "" || nama_lengkap == "" || pangkat == "" || no_hp == "" || kode_dept == "") {
           Swal.fire({
             icon: 'error',
             title: 'Gagal',

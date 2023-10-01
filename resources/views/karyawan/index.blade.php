@@ -54,7 +54,7 @@
                           <div class="col-4">
                             <div class="form-group">
                               <select name="kode_dept" id="kode_dept" class="form-select">
-                                <option value="">-- Pilih Departemen --</option>
+                                <option value="">-- Pilih Jabatan --</option>
                                 @foreach ($departemen as $item)
                                     <option {{ Request('kode_dept')==$item->kode_dept ? 'selected' : ''  }} value="{{ $item->kode_dept }}">{{ $item->nama_dept }}</option>
                                 @endforeach
@@ -84,10 +84,10 @@
                                 <th>No</th>
                                 <th>NIK</th>
                                 <th>Nama Karyawan</th>
-                                <th>Jabatan</th>
+                                <th>Pangkat</th>
                                 <th>No.HP</th>
                                 <th>Foto</th>
-                                <th>Departemen</th>
+                                <th>Jabatan</th>
                                 <th>Aksi</th>
                             </tr>   
                         </thead>
@@ -100,7 +100,7 @@
                                 <td>{{ $loop->iteration + $karyawan->firstItem()-1 }}</td>
                                 <td>{{ $item->nik }}</td>
                                 <td>{{ $item->nama_lengkap }}</td>
-                                <td>{{ $item->jabatan }}</td>
+                                <td>{{ $item->pangkat }}</td>
                                 <td>{{ $item->no_hp }}</td>
                                 <td>
                                     @if ( empty($item->foto) )
@@ -198,7 +198,7 @@
               <circle cx="12" cy="7.5" r=".5" fill="currentColor"></circle>
            </svg>
           </span>
-          <input type="text" id="jabatan" value="" class="form-control" name="jabatan" placeholder="Jabatan">
+          <input type="text" id="pangkat" value="" class="form-control" name="pangkat" placeholder="pangkat">
         </div>
       </div>
     </div>
@@ -225,7 +225,7 @@
     <div class="row mt-2">
       <div class="col-12">
         <select name="kode_dept" id="kode_dept" class="form-select">
-          <option value="">-- Pilih Departemen --</option>
+          <option value="">-- Pilih Jabatan --</option>
           @foreach ($departemen as $item)
           <option {{ Request('kode_dept')==$item->kode_dept ? 'selected' : ''  }} value="{{ $item->kode_dept }}">{{ $item->nama_dept }}</option>
           @endforeach
@@ -316,10 +316,10 @@
     $("#formKaryawan").submit(function(){
       var nik = $("#nik").val();
       var nama_lengkap = $("#nama_lengkap").val();
-      var jabatan = $("#jabatan").val();
+      var pangkat = $("#pangkat").val();
       var no_hp = $("#no_hp").val();
       var kode_dept = $("formKaryawan").find("#kode_dept").val();
-      if(nik == "" || nama_lengkap == "" || jabatan == "" || no_hp == "" || kode_dept == "") {
+      if(nik == "" || nama_lengkap == "" || pangkat == "" || no_hp == "" || kode_dept == "") {
           Swal.fire({
             icon: 'error',
             title: 'Gagal',

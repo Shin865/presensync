@@ -34,7 +34,7 @@ class KaryawanController extends Controller
     {
         $nik = $request->nik;
         $nama_lengkap = $request->nama_lengkap;
-        $jabatan = $request->jabatan;
+        $pangkat = $request->pangkat;
         $no_hp = $request->no_hp;
         $kode_dept = $request->kode_dept;
         $password = Hash::make(12345);
@@ -47,7 +47,7 @@ class KaryawanController extends Controller
             $data = array(
                 'nik' =>$nik,
                 'nama_lengkap' =>$nama_lengkap,
-                'jabatan' => $jabatan,
+                'pangkat' => $pangkat,
                 'no_hp' => $no_hp,
                 'kode_dept' => $kode_dept,
                 'foto' => $foto,
@@ -80,7 +80,7 @@ class KaryawanController extends Controller
 
         $nik = $request->nik;
         $nama_lengkap = $request->nama_lengkap;
-        $jabatan = $request->jabatan;
+        $pangkat = $request->pangkat;
         $no_hp = $request->no_hp;
         $kode_dept = $request->kode_dept;
         $password = Hash::make(12345);
@@ -93,7 +93,7 @@ class KaryawanController extends Controller
          try{
             $data = array(
                 'nama_lengkap' =>$nama_lengkap,
-                'jabatan' => $jabatan,
+                'pangkat' => $pangkat,
                 'no_hp' => $no_hp,
                 'kode_dept' => $kode_dept,
                 'foto' => $foto,

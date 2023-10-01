@@ -34,8 +34,8 @@
                 <img src="{{ asset('assets/img/login/login.jpg') }}" alt="image" class="form-image">
             </div>
             <div class="section mt-1">
-                <h1>Presensi</h1>
-                <h4>Log in</h4>
+                <h1>PresenSync</h1>
+                <h4>Log In</h4>
             </div>
             <div class="section mt-1 mb-5">
                 @php
@@ -67,9 +67,6 @@
                     </div>
 
                     <div class="form-links mt-2">
-                        <div>
-                            <a href="page-register.html">Register Now</a>
-                        </div>
                         <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div>
                     </div>
 

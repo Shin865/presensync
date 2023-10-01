@@ -384,7 +384,7 @@ class PresensiController extends Controller
 
     public function izinsakit(Request $request){
             $query = Pengajuanizin::query();
-            $query->select('id','pengajuan_izin.nik','tgl_izin','status','keterangan','status_approved','nama_lengkap','jabatan');
+            $query->select('id','pengajuan_izin.nik','tgl_izin','status','keterangan','status_approved','nama_lengkap','pangkat');
             $query->join('karyawan','karyawan.nik','=','pengajuan_izin.nik');
             if(!empty($request->dari) && !empty($request->sampai)){
                 $query->whereBetween('tgl_izin', [$request->dari, $request->sampai]);
