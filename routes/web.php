@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\KonfigurasiController;
+use App\Http\Controllers\BoardingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,7 @@ use App\Http\Controllers\KonfigurasiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/boarding', [BoardingController::class, 'index']);
 
 Route::middleware(['guest:karyawan'])->group(function () {
     Route::get('/', function () {

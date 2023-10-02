@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>A4</title>
+  <title>Cetak Laporan</title>
 
   <!-- Normalize or reset CSS with your favorite library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
@@ -80,7 +80,7 @@
    <table style="width: 100%">
     <tr>
         <td style="width: 30px">
-            <img src="{{ asset('assets/img/logopresensi.png') }}" alt="" width="80" height="80">
+            <img src="{{ asset('/tabler/static/logo.png')}}" alt="" width="80" height="80">
         </td>
         <td>
             <span id="title">

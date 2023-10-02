@@ -18,6 +18,7 @@
         margin: auto;
         height: auto !important;
         border-radius: 20px;
+        
     }
 
     #map { 
