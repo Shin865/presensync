@@ -87,5 +87,3 @@ Route::middleware('auth:user')->group(function () {
 
     Route::get('/konfigurasi/jamkerja', [KonfigurasiController::class, 'jamkerja']);
 });
-
-    Route::get('/boarding', [BoardingController::class, 'boarding']);
