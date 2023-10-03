@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class BoardingController extends Controller
 {
-    public function index()
+    public function boarding()
     {
         return view('boarding.boarding');
     }

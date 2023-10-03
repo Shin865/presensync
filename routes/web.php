@@ -18,7 +18,6 @@ use App\Http\Controllers\BoardingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/boarding', [BoardingController::class, 'index']);
 
 Route::middleware(['guest:karyawan'])->group(function () {
     Route::get('/', function () {
@@ -52,6 +51,7 @@ Route::middleware('auth:karyawan')->group(function () {
     Route::get('/presensi/buatizin', [PresensiController::class, 'buatizin']);
     Route::post('/presensi/storeizin', [PresensiController::class, 'storeizin']);
     Route::post('/presensi/cekizin', [PresensiController::class, 'cekizin']);
+
 });
 
 Route::middleware('auth:user')->group(function () {
@@ -87,3 +87,5 @@ Route::middleware('auth:user')->group(function () {
 
     Route::get('/konfigurasi/jamkerja', [KonfigurasiController::class, 'jamkerja']);
 });
+
+    Route::get('/boarding', [BoardingController::class, 'boarding']);
