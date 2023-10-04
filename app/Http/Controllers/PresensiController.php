@@ -222,9 +222,9 @@ class PresensiController extends Controller
 
     public function getpresensi(Request $request){
         $tanggal = $request->tanggal;
-        $presensi = DB::table('presensi')->select('presensi.*','nama_lengkap','nama_dept')
+        $presensi = DB::table('presensi')->select('presensi.*','nama_lengkap','nama_jab')
         ->join('karyawan','karyawan.nik','=','presensi.nik')
-        ->join('departemen','departemen.kode_dept','=','karyawan.kode_dept')
+        ->join('jabatan','jabatan.kode_jab','=','karyawan.kode_jab')
         ->where('tgl_presensi', $tanggal)
         ->get();
 
@@ -264,7 +264,7 @@ class PresensiController extends Controller
         $bulan = $request->bulan;
         $tahun = $request->tahun;
         $karyawan = DB::table('karyawan')->where('nik',$nik)
-        ->join('departemen','departemen.kode_dept','=','karyawan.kode_dept')
+        ->join('jabatan','jabatan.kode_jab','=','karyawan.kode_jab')
         ->first();
         $presensi = DB::table('presensi')
         ->where('nik', $nik)

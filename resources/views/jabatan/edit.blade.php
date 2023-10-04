@@ -1,4 +1,4 @@
-<form action="/departemen/{{ $departemen->kode_dept }}/update" method="POST" id="formDepartemen">
+<form action="/jabatan/{{ $jabatan->kode_jab }}/update" method="POST" id="formjabatan">
     @csrf
     <div class="row">
       <div class="col-12">
@@ -14,7 +14,7 @@
               <path d="M19 16v6"></path>
            </svg>
           </span>
-          <input type="text" id="nik" value="{{ $departemen->kode_dept }}" class="form-control" name="kode_dept" placeholder="Kode_Jabatan" readonly>
+          <input type="text" id="nik" value="{{ $jabatan->kode_jab }}" class="form-control" name="kode_jab" placeholder="Kode_Jabatan" readonly>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
               <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
             </svg>
           </span>
-          <input type="text" id="nama_dept" value="{{ $departemen->nama_dept }}" name="nama_dept" class="form-control" placeholder="Nama Jabatan">
+          <input type="text" id="nama_jab" value="{{ $jabatan->nama_jab }}" name="nama_jab" class="form-control" placeholder="Nama Jabatan">
         </div>
       </div>
     </div>

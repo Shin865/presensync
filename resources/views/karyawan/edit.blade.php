@@ -70,10 +70,10 @@
 </div>
 <div class="row mt-2">
 <div class="col-12">
-<select name="kode_dept" id="kode_dept" class="form-select">
+<select name="kode_jab" id="kode_jab" class="form-select">
   <option value="">-- Pilih Jabatan --</option>
-  @foreach ($departemen as $item)
-  <option {{ $karyawan->kode_dept == $item->kode_dept ? 'selected' : ''  }} value="{{ $item->kode_dept }}">{{ $item->nama_dept }}</option>
+  @foreach ($jabatan as $item)
+  <option {{ $karyawan->kode_jab == $item->kode_jab ? 'selected' : ''  }} value="{{ $item->kode_jab }}">{{ $item->nama_jab }}</option>
   @endforeach
 </select>
 </div>

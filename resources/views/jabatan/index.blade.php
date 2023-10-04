@@ -32,7 +32,7 @@
                   </div>
                     <div class="row">
                       <div class="col-12">
-                        <a href="#" class="btn btn-primary" id="btnTambahDepartemen">
+                        <a href="#" class="btn btn-primary" id="btnTambahJabatan">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 5l0 14"></path>
@@ -48,8 +48,8 @@
                         <div class="row">
                           <div class="col-10">
                             <div class="form-group">
-                              <input type="text" name="nama_dept" id="nama_dept" class="form-control" 
-                              placeholder="Jabatan" value="{{ Request('nama_dept') }}">
+                              <input type="text" name="nama_jab" id="nama_jab" class="form-control" 
+                              placeholder="Jabatan" value="{{ Request('nama_jab') }}">
                             </div>
                         </div>
                           <div class="col-2">
@@ -79,14 +79,14 @@
                             </tr>   
                         </thead>
                         <tbody>
-                            @foreach ($departemen as $item)
+                            @foreach ($jabatan as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->kode_dept }}</td>
-                                    <td>{{ $item->nama_dept }}</td>
+                                    <td>{{ $item->kode_jab }}</td>
+                                    <td>{{ $item->nama_jab }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="#" class="edit btn btn-info btn-sm" kode_dept="{{ $item->kode_dept }}">
+                                            <a href="#" class="edit btn btn-info btn-sm" kode_jab="{{ $item->kode_jab }}">
                                               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
@@ -94,7 +94,7 @@
                                               <path d="M16 5l3 3"></path>
                                            </svg>
                                             </a>
-                                            <form action="/departemen/{{ $item->kode_dept }}/delete" method="POST" style="margin-left:5px">
+                                            <form action="/Jabatan/{{ $item->kode_jab }}/delete" method="POST" style="margin-left:5px">
                                             @csrf
                                             <a class="btn btn-danger btn-sm delete-confirm"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -118,7 +118,7 @@
         </div>
     </div>
   </div>
-  <div class="modal modal-blur fade" id="modal-inputdepartemen" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal modal-blur fade" id="modal-inputjabatan" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -126,7 +126,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/departemen/store" method="POST" id="formDepartemen">
+          <form action="/jabatan/store" method="POST" id="formjabatan">
             @csrf
             <div class="row">
               <div class="col-12">
@@ -142,7 +142,7 @@
                       <path d="M19 16v6"></path>
                    </svg>
                   </span>
-                  <input type="text" id="nik" value="" class="form-control" name="kode_dept" placeholder="Kode_Jabatan">
+                  <input type="text" id="nik" value="" class="form-control" name="kode_jab" placeholder="Kode_Jabatan">
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@
                       <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                     </svg>
                   </span>
-                  <input type="text" id="nama_dept" value="" name="nama_dept" class="form-control" placeholder="Nama Jabatan">
+                  <input type="text" id="nama_jab" value="" name="nama_jab" class="form-control" placeholder="Nama Jabatan">
                 </div>
               </div>
             </div>
@@ -180,7 +180,7 @@
 </div>
 </div>
 
-  <div class="modal modal-blur fade" id="modal-editdepartemen" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal modal-blur fade" id="modal-editjabatan" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -198,25 +198,25 @@
 @push('myscript')
 <script>
   $(function(){
-    $("#btnTambahDepartemen").click(function(){
-      $("#modal-inputdepartemen").modal("show");
+    $("#btnTambahjabatan").click(function(){
+      $("#modal-inputjabatan").modal("show");
     });
 
     $(".edit").click(function(){
-      var kode_dept = $(this).attr('kode_dept');
+      var kode_jab = $(this).attr('kode_jab');
       $.ajax({
         type: 'POST',
-        url: '/departemen/edit',
+        url: '/Jabatan/edit',
         cache:false,
         data: {
           _token: '{{ csrf_token(); }}',
-          kode_dept: kode_dept
+          kode_jab: kode_jab
         },
         success: function(respond){
           $("#loadeditform").html(respond);
         }
       });
-      $("#modal-editdepartemen").modal("show");
+      $("#modal-editjabatan").modal("show");
     });
 
     $(".delete-confirm").click(function(e){
@@ -246,8 +246,8 @@
       var nama_lengkap = $("#nama_lengkap").val();
       var pangkat = $("#pangkat").val();
       var no_hp = $("#no_hp").val();
-      var kode_dept = $("formKaryawan").find("#kode_dept").val();
-      if(nik == "" || nama_lengkap == "" || pangkat == "" || no_hp == "" || kode_dept == "") {
+      var kode_jab = $("formKaryawan").find("#kode_jab").val();
+      if(nik == "" || nama_lengkap == "" || pangkat == "" || no_hp == "" || kode_jab == "") {
           Swal.fire({
             icon: 'error',
             title: 'Gagal',

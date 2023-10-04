@@ -14,20 +14,20 @@ class KaryawanController extends Controller
     public function index(Request $request)
     {
         $query = Karyawan::query();
-        $query->select('karyawan.*', 'nama_dept');
-        $query->join('departemen', 'karyawan.kode_dept', '=', 'departemen.kode_dept');
+        $query->select('karyawan.*', 'nama_jab');
+        $query->join('jabatan', 'karyawan.kode_jab', '=', 'jabatan.kode_jab');
         $query->orderBy('nama_lengkap');
         if(!empty($request->nama_karyawan)){
             $query->where('nama_lengkap','like','%'.$request->nama_karyawan.'%');
         }
-        if(!empty($request->kode_dept)){
-            $query->where('karyawan.kode_dept',$request->kode_dept);
+        if(!empty($request->kode_jab)){
+            $query->where('karyawan.kode_jab',$request->kode_jab);
         }
         $karyawan = $query->paginate(5);
 
-        $departemen = DB::table('departemen')->get();
+        $jabatan = DB::table('jabatan')->get();
 
-        return view('karyawan.index',compact('karyawan','departemen'));
+        return view('karyawan.index',compact('karyawan','jabatan'));
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class KaryawanController extends Controller
         $nama_lengkap = $request->nama_lengkap;
         $pangkat = $request->pangkat;
         $no_hp = $request->no_hp;
-        $kode_dept = $request->kode_dept;
+        $kode_jab = $request->kode_jab;
         $password = Hash::make(12345);
         if($request->hasFile('foto')){
             $foto = $nik.".".$request->file('foto')->getClientOriginalExtension();
@@ -49,7 +49,7 @@ class KaryawanController extends Controller
                 'nama_lengkap' =>$nama_lengkap,
                 'pangkat' => $pangkat,
                 'no_hp' => $no_hp,
-                'kode_dept' => $kode_dept,
+                'kode_jab' => $kode_jab,
                 'foto' => $foto,
                 'password' => $password
             );
@@ -71,9 +71,9 @@ class KaryawanController extends Controller
 
     public function edit(Request $request){
         $nik = $request->nik;
-        $departemen = DB::table('departemen')->get();
+        $jabatan = DB::table('jabatan')->get();
         $karyawan = DB::table('karyawan')->where('nik',$nik)->first();
-        return view('karyawan.edit',compact('departemen','karyawan'));
+        return view('karyawan.edit',compact('jabatan','karyawan'));
     }
 
     public function update(Request $request){
@@ -82,7 +82,7 @@ class KaryawanController extends Controller
         $nama_lengkap = $request->nama_lengkap;
         $pangkat = $request->pangkat;
         $no_hp = $request->no_hp;
-        $kode_dept = $request->kode_dept;
+        $kode_jab = $request->kode_jab;
         $password = Hash::make(12345);
         $foto_lama = $request->foto_lama;
         if($request->hasFile('foto')){
@@ -95,7 +95,7 @@ class KaryawanController extends Controller
                 'nama_lengkap' =>$nama_lengkap,
                 'pangkat' => $pangkat,
                 'no_hp' => $no_hp,
-                'kode_dept' => $kode_dept,
+                'kode_jab' => $kode_jab,
                 'foto' => $foto,
                 'password' => $password
             );

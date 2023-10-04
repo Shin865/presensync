@@ -53,10 +53,10 @@
                           </div>
                           <div class="col-4">
                             <div class="form-group">
-                              <select name="kode_dept" id="kode_dept" class="form-select">
+                              <select name="kode_jab" id="kode_jab" class="form-select">
                                 <option value="">-- Pilih Jabatan --</option>
-                                @foreach ($departemen as $item)
-                                    <option {{ Request('kode_dept')==$item->kode_dept ? 'selected' : ''  }} value="{{ $item->kode_dept }}">{{ $item->nama_dept }}</option>
+                                @foreach ($jabatan as $item)
+                                    <option {{ Request('kode_jab')==$item->kode_jab ? 'selected' : ''  }} value="{{ $item->kode_jab }}">{{ $item->nama_jab }}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -109,7 +109,7 @@
                                         <img src="{{ url($path) }}" class="avatar" alt="">
                                     @endif
                                 </td>
-                                <td>{{ $item->nama_dept }}</td>
+                                <td>{{ $item->nama_jab }}</td>
                                 <td>
                                   <div class="btn-group">
                                   <a href="#" class="edit btn btn-info btn-sm" nik="{{ $item->nik }}">
@@ -224,10 +224,10 @@
     </div>
     <div class="row mt-2">
       <div class="col-12">
-        <select name="kode_dept" id="kode_dept" class="form-select">
+        <select name="kode_jab" id="kode_jab" class="form-select">
           <option value="">-- Pilih Jabatan --</option>
-          @foreach ($departemen as $item)
-          <option {{ Request('kode_dept')==$item->kode_dept ? 'selected' : ''  }} value="{{ $item->kode_dept }}">{{ $item->nama_dept }}</option>
+          @foreach ($jabatan as $item)
+          <option {{ Request('kode_jab')==$item->kode_jab ? 'selected' : ''  }} value="{{ $item->kode_jab }}">{{ $item->nama_jab }}</option>
           @endforeach
         </select>
       </div>
@@ -318,8 +318,8 @@
       var nama_lengkap = $("#nama_lengkap").val();
       var pangkat = $("#pangkat").val();
       var no_hp = $("#no_hp").val();
-      var kode_dept = $("formKaryawan").find("#kode_dept").val();
-      if(nik == "" || nama_lengkap == "" || pangkat == "" || no_hp == "" || kode_dept == "") {
+      var kode_jab = $("formKaryawan").find("#kode_jab").val();
+      if(nik == "" || nama_lengkap == "" || pangkat == "" || no_hp == "" || kode_jab == "") {
           Swal.fire({
             icon: 'error',
             title: 'Gagal',

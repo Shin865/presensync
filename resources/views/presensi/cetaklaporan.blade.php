@@ -117,7 +117,7 @@
     <tr>
         <td>Jabatan</td>
         <td>:</td>
-        <td>{{ $karyawan->nama_dept }}</td>
+        <td>{{ $karyawan->nama_jab }}</td>
     </tr>
     <tr>
         <td>No.HP</td>

@@ -23,7 +23,7 @@
     <td>{{ $loop->iteration }}</td>
     <td>{{ $d->nik }}</td>
     <td>{{ $d->nama_lengkap }}</td>
-    <td>{{ $d->nama_dept }}</td>
+    <td>{{ $d->nama_jab }}</td>
     <td>{{ $d->jam_in }}</td>
     <td>
         <img src="{{ url($foto_in) }}" class="avatar">
