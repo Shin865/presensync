@@ -7,7 +7,7 @@ use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\KonfigurasiController;
-use App\Http\Controllers\BoardingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -87,6 +87,3 @@ Route::middleware('auth:user')->group(function () {
 
     Route::get('/konfigurasi/jamkerja', [KonfigurasiController::class, 'jamkerja']);
 });
-
-    Route::get('/boarding', [BoardingController::class, 'boarding']);
-    Route::get('/boarding/akun', [BoardingController::class, 'akun']);
