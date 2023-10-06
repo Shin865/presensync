@@ -1,3 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Boarding Page</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('assets/home/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/home/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/home/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/home/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/home/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('assets/home/assets/css/main.css') }}" rel="stylesheet">
+</head>
+
+<body class="index-page">
+
+
+  <main id="main">
+
+      <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <span><img src="{{ asset('tabler/static/logo.png') }}" alt="image" class="form-image"></span>
+        <h1>PresenSync</h1>
+      </a>
+
+      <!-- Nav Menu -->
+      <nav id="navmenu" class="navmenu" style="margin-right:10%">
+        <ul>
+          <li><a href="boarding" class="active">Beranda</a></li>
+          <li><a href="boarding#about">Tentang Kami</a></li>
+          <li><a href="boarding#harga">langganan</a></li>
+          <li><a href="boarding#tim">Team</a></li>
+          <li><a href="boarding#testimon">Testimoni</a></li>
+          <li><a href="boarding#footer">Contact</a></li>
+        </ul>
+
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav><!-- End Nav Menu -->
+
+    </div>
+  </header><!-- End Header -->
 
 <div class="page-header d-print-none">
     <div class="container-xl">
@@ -46,7 +107,7 @@
                                         <path d="M20.733 20l1.3 .75"></path>
                                      </svg>
                                 </span>
-                                <input type="text" id="lokasi_kantor" value="{{ $lok_kantor->lokasi_kantor }}" class="form-control" name="lokasi_kantor" placeholder="Lokasi Kantor">
+                                <input type="text" id="lokasi_kantor" value="" class="form-control" name="lokasi_kantor" placeholder="Lokasi Kantor">
                               </div>
                             </div>
                           </div>
@@ -62,7 +123,7 @@
                                         <path d="M12 12v9"></path>
                                      </svg>
                                 </span>
-                                <input type="text" id="radius" value="{{ $lok_kantor->radius }}" name="radius" class="form-control" placeholder="Radius">
+                                <input type="text" id="radius" value="" name="radius" class="form-control" placeholder="Radius">
                               </div>
                             </div>
                           </div>
@@ -86,3 +147,54 @@
         </div>
     </div>
 </div>
+   
+</main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+  <div class="container footer-top">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 footer-about">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <span>Masih Bingung tentang presensync? atau ragu untuk bberlangganan? </span>
+        </a>
+        <p>Hubungi Kami pasti kami akan melayani dengan sepenuh hati.</p>
+        <div class="d-flex mt-4">
+          <a href=""><ion-icon name="mail"></ion-icon></a>
+          <a href=""></a>
+          <a href=""></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</footer><!-- End Footer -->
+
+<!-- Scroll Top Button -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="{{ asset('assets/home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/home/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('assets/home/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+<script src="{{ asset('assets/home/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('assets/home/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('assets/home/assets/vendor/aos/aos.js') }}"></script>
+<script src="{{ asset('assets/home/assets/vendor/php-email-form/validate.js') }}"></script>
+
+<!-- Template Main JS File -->
+<script src="{{ asset('assets/home/assets/js/main.js') }}"></script>
+
+</body>
+
+</html>

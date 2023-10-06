@@ -32,7 +32,7 @@
                   </div>
                     <div class="row">
                       <div class="col-12">
-                        <a href="#" class="btn btn-primary" id="btnTambahJabatan">
+                        <a href="#" class="btn btn-primary" id="btnTambahjabatan">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 5l0 14"></path>
@@ -44,7 +44,7 @@
                     </div>
                   <div class="row mt-2">
                     <div class="col-12">
-                      <form action="#" method="GET">
+                      <form action="/jabatan" method="GET">
                         <div class="row">
                           <div class="col-10">
                             <div class="form-group">
@@ -94,7 +94,7 @@
                                               <path d="M16 5l3 3"></path>
                                            </svg>
                                             </a>
-                                            <form action="/Jabatan/{{ $item->kode_jab }}/delete" method="POST" style="margin-left:5px">
+                                            <form action="/jabatan/{{ $item->kode_jab }}/delete" method="POST" style="margin-left:5px">
                                             @csrf
                                             <a class="btn btn-danger btn-sm delete-confirm"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -142,7 +142,7 @@
                       <path d="M19 16v6"></path>
                    </svg>
                   </span>
-                  <input type="text" id="nik" value="" class="form-control" name="kode_jab" placeholder="Kode_Jabatan">
+                  <input type="text" id="nik" value="" class="form-control" name="kode_jab" placeholder="Kode Jabatan">
                 </div>
               </div>
             </div>
@@ -206,7 +206,7 @@
       var kode_jab = $(this).attr('kode_jab');
       $.ajax({
         type: 'POST',
-        url: '/Jabatan/edit',
+        url: '/jabatan/edit',
         cache:false,
         data: {
           _token: '{{ csrf_token(); }}',

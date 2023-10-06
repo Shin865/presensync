@@ -10,4 +10,9 @@ class BoardingController extends Controller
     {
         return view('boarding.boarding');
     }
+
+    public function akun()
+    {
+        return view('boarding.akun');
+    }
 }

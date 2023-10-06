@@ -70,7 +70,7 @@
           <h2 data-aos="fade-up" data-aos-delay="100">Upgrade Sistem Presensi Sekolah Anda</h2>
           <p data-aos="fade-up" data-aos-delay="200">Sistem Presensi Masih Manual? Kini hadir PresenSync untuk membantu efisiensi sistem presensi sekolah anda</p>
           <br>
-          <a href="#" class="btn btn-primary">
+          <a href="/boarding/akun" class="btn btn-primary">
             Langganan dan nikmati sekarang</a>
         </div>
         </div>

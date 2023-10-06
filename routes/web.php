@@ -8,6 +8,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\BoardingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,7 +82,6 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/presensi/approveizin', [PresensiController::class, 'approveizin']);
     Route::get('/presensi/{id}/batalkanizin', [PresensiController::class, 'batalkanizin']);
     
-
     Route::get('/konfigurasi/lokasikantor', [KonfigurasiController::class, 'lokasikantor']);
     Route::post('/konfigurasi/updatelokkantor', [KonfigurasiController::class, 'updatelokkantor']);
 
@@ -89,3 +89,4 @@ Route::middleware('auth:user')->group(function () {
 });
 
     Route::get('/boarding', [BoardingController::class, 'boarding']);
+    Route::get('/boarding/akun', [BoardingController::class, 'akun']);

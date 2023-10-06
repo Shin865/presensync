@@ -163,15 +163,16 @@
                 Data Master
               </span>
             </a>
-            <div class="dropdown-menu {{ request()->is(['karyawan','jabatan']) ? 'show' : '' }}">
+            <div class="dropdown-menu {{ request()->is(['karyawan','jabatan',]) ? 'show' : '' }}">
               <div class="dropdown-menu-columns">
                 <div class="dropdown-menu-column">
                   <a class="dropdown-item {{ request()->is(['karyawan']) ? 'active' : '' }}" href="/karyawan">
                     Karyawan
                   </a>
-                  <a class="dropdown-item {{ request()->is(['Jabatan']) ? 'active' : '' }}" href="/jabatan">
+                  <a class="dropdown-item {{ request()->is(['jabatan']) ? 'active' : '' }}" href="/jabatan">
                     Jabatan
                   </a>
+                  
                 </div>
               </div>
             </div>
