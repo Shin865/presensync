@@ -19,10 +19,19 @@ class AuthController extends Controller
 
     public function prosesloginadmin(Request $request)
     {
-        if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/panel/dashboardadmin');
         } else {
             return redirect('/panel')->with(['warning' => 'Email atau Password salah']);
+        }   
+    }
+
+    public function proseslogincontrol(Request $request)
+    {
+        if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect('/control/dashboardcontrol');
+        } else {
+            return redirect('/control')->with(['warning' => 'Nama atau Password salah']);
         }   
     }
 
@@ -35,9 +44,17 @@ class AuthController extends Controller
     }
 
     public function proseslogoutadmin(){
+        if (Auth::guard('admin')->check()) {
+            Auth::guard('admin')->logout();
+            return redirect('/panel');
+        }
+    }
+
+    public function proseslogoutcontrol()
+    {
         if (Auth::guard('user')->check()) {
             Auth::guard('user')->logout();
-            return redirect('/panel');
+            return redirect('/control');
         }
     }
 

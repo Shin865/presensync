@@ -22,14 +22,18 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-12">
-                     @php
-                     if(Session::get('success')){
-                       echo '<div class="alert alert-success">'.Session::get('success').'</div>';
-                     }elseif(Session::get('error')){
-                        echo '<div class="alert alert-danger">'.Session::get('error').'</div>';
-                      }
-                     @endphp
+                     @if(Session::get('success'))
+                     <div class="alert alert-success">
+                      {{ Session::get('success') }}
+                    </div>
+                    @endif
+                    @if(Session::get('error'))
+                      <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                      </div>
+                    @endif
                   </div>
+                </div>
                     <div class="row">
                       <div class="col-12">
                         <a href="#" class="btn btn-primary" id="btnTambahkaryawan">
@@ -270,6 +274,8 @@
 @push('myscript')
 <script>
   $(function(){
+    $("#nik").mask("00000");
+    $("#no_hp").mask("0000000000000");
     $("#btnTambahkaryawan").click(function(){
       $("#modal-inputkaryawan").modal("show");
     });

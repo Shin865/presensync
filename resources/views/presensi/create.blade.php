@@ -61,6 +61,7 @@
         Webcam.set({
             width: 640,
             height: 480,
+            
             image_format: 'jpeg',
             jpeg_quality: 80
         });
@@ -68,11 +69,7 @@
 
         var lokasi = document.getElementById('lokasi');
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            });
+            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
         } else {
             lokasi.value = "Geolocation is not supported by this browser.";
         }

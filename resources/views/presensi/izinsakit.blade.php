@@ -16,6 +16,20 @@
     <div class="container-xl">
         <div class="row">
             <div class="col-12">
+             @if(Session::get('success'))
+             <div class="alert alert-success">
+              {{ Session::get('success') }}
+            </div>
+            @endif
+            @if(Session::get('error'))
+              <div class="alert alert-danger">
+                {{ Session::get('error') }}
+              </div>
+            @endif
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <form action="/presensi/izinsakit" method="GET" autocomplete="off">
                     <div class="row">
                         <div class="col-6">
@@ -114,6 +128,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Kode Izin</th>
                             <th>NIK</th>
                             <th>Tanggal</th>
                             <th>Nama</th>
@@ -128,11 +143,19 @@
                         @foreach ($izinsakit as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->kode_izin }}</td>
                                 <td>{{ $item->nik }}</td>
-                                <td>{{ date('d-m-Y',strtotime($item->tgl_izin)) }}</td>
+                                <td>{{ date('d-m-Y',strtotime($item->tgl_izin_dari)) }} s/d {{ date('d-m-Y',strtotime($item->tgl_izin_sampai)) }}</td>
                                 <td>{{ $item->nama_lengkap }}</td>
                                 <td>{{ $item->pangkat }}</td>
-                                <td>{{ $item->status == "i" ? "Izin" : "Sakit" }}</td>
+                                @if($item->status == "i")
+                                <td>Izin</td>
+                                @elseif($item->status == "s")
+                                <td>Sakit</td>
+                                @elseif($item->status == "c")
+                                <td>Cuti</td>
+                                @endif
+                                </td>
                                 <td>{{ $item->keterangan }}</td>
                                 <td>
                                     @if ($item->status_approved == "0")
@@ -145,7 +168,7 @@
                                 </td>
                                 <td>
                                     @if($item->status_approved == "0")
-                                    <a href="#" class="btn btn-sm btn-primary" id="approve" id_izinsakit="{{ $item->id }}">
+                                    <a href="#" class="btn btn-sm btn-primary approve" kode_izin="{{ $item->kode_izin }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"></path>
@@ -155,7 +178,7 @@
                                          Aksi
                                     </a>
                                     @else
-                                    <a href="/presensi/{{ $item->id}}/batalkanizin" class="btn btn-sm btn-danger">
+                                    <a href="/presensi/{{ $item->kode_izin}}/batalkanizin" class="btn btn-sm btn-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z"></path>
                                             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -184,7 +207,7 @@
         <div class="modal-body">
             <form action="/presensi/approveizin" method="POST">
                 @csrf
-                <input type="hidden" id="id_izinsakit_form" name="id_izinsakit_form">
+                <input type="hidden" id="kode_izin_form" name="kode_izin_form">
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
@@ -218,10 +241,10 @@
 @push('myscript')
 <script>
     $(function() {
-        $('#approve').click(function(e){
+        $('.approve').click(function(e){
             e.preventDefault();
-            var id_izinsakit = $(this).attr('id_izinsakit');
-            $('#id_izinsakit_form').val(id_izinsakit);
+            var kode_izin = $(this).attr('kode_izin');
+            $('#kode_izin_form').val(kode_izin);
             $('#modal-izinsakit').modal('show');
         });
 

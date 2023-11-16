@@ -96,48 +96,67 @@
     <tr>
         <th rowspan="2">NIK</th>
         <th rowspan="2">Nama</th>
-        <th colspan="31">Tanggal</th>
-        <th rowspan="2">TH</th>
-        <th rowspan="2">TT</th>
+        <th colspan="{{ $jmlhari }}">{{ $bln[$bulan] }} {{ $tahun }}</th>
+        <th rowspan="2">H</th>
+        <th rowspan="2">I</th>
+        <th rowspan="2">S</th>
+        <th rowspan="2">A</th>
     </tr>
     <tr>
-    <?php
-    for($i=1;$i<=31;$i++){
-    ?>
-    <th>{{ $i }}</th>
-    <?php
-    }
-    ?>
+        @foreach ($rangetanggal as $d)
+        @if($d != NULL)
+        <th>{{ date('d', strtotime($d)) }}</th>
+        @endif
+        @endforeach
     </tr>
     @foreach ($rekap as $item)
         <tr>
             <td>{{ $item->nik }}</td>
             <td>{{ $item->nama_lengkap }}</td>
-            <?php
-            $totalhadir = 0;
-            $totaltelat = 0;
-            for($i=1;$i<=31;$i++){
-                $tgl = "tgl_".$i;
-                if(empty($item->$tgl)){
-                    $hadir[0] = "";
-                    $hadir[1] = "";
-                }else {
-                    $hadir = explode("-",$item->$tgl);
-                    $totalhadir++;
-                    if($hadir[0] > "07:00:00"){
-                        $totaltelat++;
+                <?php
+                    $jml_hadir = 0;
+                    $jml_izin = 0;
+                    $jml_sakit = 0;
+                    $jml_alpha = 0;
+                    $jml_cuti = 0;
+                    $color = "";
+                    for($i=1; $i<=$jmlhari; $i++){
+                        $tgl = "tgl_".$i;  
+                        $datapresensi = explode("|", $item->$tgl);
+                        if($item->$tgl != NULL){
+                        $status = $datapresensi[2];
+                        }else{
+                        $status = "";
+                        }
+
+                        if($status == "h"){
+                            $jml_hadir++;
+                            $color = "white";
+                        }elseif($status == "i"){
+                            $jml_izin++;
+                            $color = "yellow";
+                        }elseif($status == "s"){
+                            $jml_sakit++;
+                            $color = "orange";
+                        }elseif($status == "c"){
+                            $jml_cuti++;
+                            $color = "grey";
+                        }elseif(empty($status)){
+                            $color = "red";
+                            $jml_alpha++;
+                        }
+                ?>
+                <td style="background-color: {{ $color }}">
+                    {{ $status }}
+                </td>
+                <?php
                     }
-                }
-            ?>
-            <td>
-                <span style="color:{{ $hadir[0] > "07:00:00" ? "red" : "" }}">{{ $hadir[0] }}</span><br>
-                <span style="color:{{ $hadir[1] < "16:00:00" ? "red" : "" }}">{{ $hadir[1] }}</span><br>
-            </td>
-            <?php
-            }
-            ?>
-            <td>{{ $totalhadir }}</td>
-            <td>{{ $totaltelat }}</td>
+                ?>
+            <td>{{ !empty($jml_hadir) ? $jml_hadir : "" }}</td>
+            <td>{{ !empty($jml_izin) ? $jml_izin : "" }}</td>
+            <td>{{ !empty($jml_sakit) ? $jml_sakit : "" }}</td>
+            <td>{{ !empty($jml_alpha) ? $jml_alpha : "" }}</td>
+
         </tr>
     @endforeach
    </table>

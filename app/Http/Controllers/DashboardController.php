@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -19,7 +20,10 @@ class DashboardController extends Controller
         ->where('tgl_presensi', $hariini)
         ->first();
         $historibulan = DB::table('presensi')
-        ->where('nik', $nik)
+        ->select('presensi.*', 'keterangan','doc_sid','master_cuti.*')
+        ->leftJoin('pengajuan_izin', 'presensi.kode_izin', '=', 'pengajuan_izin.kode_izin')
+        ->leftJoin('master_cuti', 'pengajuan_izin.kode_cuti', '=', 'master_cuti.kode_cuti')
+        ->where('presensi.nik', $nik)
         ->whereRaw('MONTH(tgl_presensi) ="'.$bulanini.'"')
         ->whereRaw('YEAR(tgl_presensi) ="'.$tahunini.'"')
         ->orderBy('tgl_presensi')
@@ -55,8 +59,8 @@ class DashboardController extends Controller
         $rekapizin = DB::table('pengajuan_izin')
         ->selectRaw('SUM(IF(status="i",1,0)) as jmlizin, SUM(IF(status="s",1,0)) as jmlsakit')
         ->where('nik', $nik)
-        ->whereRaw('MONTH(tgl_izin) ="'.$bulanini.'"')
-        ->whereRaw('YEAR(tgl_izin) ="'.$tahunini.'"')
+        ->whereRaw('MONTH(tgl_izin_dari) ="'.$bulanini.'"')
+        ->whereRaw('YEAR(tgl_izin_dari) ="'.$tahunini.'"')
         ->where('status_approved', 1)
         ->first();
 
@@ -73,11 +77,36 @@ class DashboardController extends Controller
 
         $rekapizin = DB::table('pengajuan_izin')
         ->selectRaw('SUM(IF(status="i",1,0)) as jmlizin, SUM(IF(status="s",1,0)) as jmlsakit')
-        ->where('tgl_izin', $hariini)
+        ->where('tgl_izin_dari', $hariini)
         ->where('status_approved', 1)
         ->first();
 
         return view('dashboard.dashboardadmin',compact('rekappresensi','rekapizin'));
+    }
+
+    public function dashboardcontrol(Request $request){
+        $query = User::query();
+        $query->select('admins.*');
+        $query->orderBy('name');
+        if(!empty($request->name)){
+            $query->where('name','like','%'.$request->name.'%');
+        }
+        if($request->status != ""){
+            $query->where('status', $request->status);
+        }
+        $admins = DB::table('admins')->paginate(5);
+        return view('dashboard.dashboardcontrol',compact('admins'));
+    }
+
+    public function statusmitra(Request $request){
+        $id_form = $request->id_form;
+        $status = $request->status;
+        $update = DB::table('admins')->where('id_admin', $id_form)->update(['status' => $status]);
+        if($update){
+            return redirect('/control/dashboardcontrol')->with(['success' => 'Data Berhasil di Update']);
+         }else{
+             return redirect('/control/dashboardcontrol')->with(['error' => 'Data Gagal di Update']);
+         }
     }
 
 }

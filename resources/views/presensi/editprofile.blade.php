@@ -13,7 +13,8 @@
 <!-- * App Header -->
 @endsection
 @section('content')
-<div class="row" style="margin-top:4rem">
+<form action="/presensi/{{ $karyawan->nik }}/updateprofile" method="POST" enctype="multipart/form-data" style="margin-top:70px">
+    @csrf
     <div class="col">
         @php
         $messagesuccess = Session::get('success');
@@ -28,10 +29,12 @@
             {{ $messageerror }}
         </div>
         @endif
-    </div>
-</div>
-<form action="/presensi/{{ $karyawan->nik }}/updateprofile" method="POST" enctype="multipart/form-data" style="margin-top:2%">
-    @csrf
+
+        @error('foto')
+        <div class="alert alert-warning">
+            <p>{{ $message }}</p>
+        </div>
+        @enderror
     <div class="col">
         <div class="form-group boxed">
             <div class="input-wrapper">
@@ -68,5 +71,6 @@
             </div>
         </div>
     </div>
+</div>
 </form>
 @endsection

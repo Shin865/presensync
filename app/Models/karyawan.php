@@ -18,6 +18,7 @@ class karyawan extends Authenticatable
         'nama_lengkap',
         'pangkat',
         'no_hp',
+        'kode_jab',
         'password',
     ];
 
