@@ -104,7 +104,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="./icons.html" >
+                  <a class="nav-link" href="/dashboardcontrol/paket" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/ghost -->
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 11a7 7 0 0 1 14 0v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-7" /><path d="M10 10l.01 0" /><path d="M14 10l.01 0" /><path d="M10 14a3.5 3.5 0 0 0 4 0" /></svg>
                     </span>
@@ -126,10 +126,10 @@
         <div class="col">
           <!-- Page pre-title -->
           <div class="page-pretitle">
-            cuti
+            paket
           </div>
           <h2 class="page-title">
-            Data Cuti
+            Data paket
           </h2>
         </div>
       </div>
@@ -152,7 +152,7 @@
                   </div>
                     <div class="row">
                       <div class="col-12">
-                        <a href="#" class="btn btn-primary" id="btnTambahcuti">
+                        <a href="#" class="btn btn-primary" id="btnTambahpaket">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 5l0 14"></path>
@@ -168,22 +168,22 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Cuti</th>
-                                <th>Nama Cuti</th>
+                                <th>Kode paket</th>
+                                <th>Nama paket</th>
                                 <th>Jumlah Hari</th>
                                 <th>Aksi</th>
                             </tr>   
                         </thead>
                         <tbody>
-                           @foreach ($cuti as $d)
+                           @foreach ($paket as $d)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $d->kode_cuti }}</td>
-                                    <td>{{ $d->nama_cuti }}</td>
+                                    <td>{{ $d->kode_paket }}</td>
+                                    <td>{{ $d->nama_paket }}</td>
                                     <td>{{ $d->jml_hari }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="#" class="edit btn btn-info btn-sm" kode_cuti="{{ $d->kode_cuti }}">
+                                            <a href="#" class="edit btn btn-info btn-sm" kode_paket="{{ $d->kode_paket }}">
                                               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
@@ -191,7 +191,7 @@
                                               <path d="M16 5l3 3"></path>
                                               </svg>
                                             </a>
-                                            <form action="/cuti/{{ $d->kode_cuti }}/delete" method="POST" style="margin-left:5px">
+                                            <form action="/paket/{{ $d->kode_paket }}/delete" method="POST" style="margin-left:5px">
                                             @csrf
                                             <a class="btn btn-danger btn-sm delete-confirm"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -215,15 +215,15 @@
         </div>
     </div>
   </div>
-  <div class="modal modal-blur fade" id="modal-inputcuti" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal modal-blur fade" id="modal-inputpaket" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Tambah Data Cuti</h5>
+          <h5 class="modal-title">Tambah Data paket</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/cuti/store" method="POST" id="formCuti">
+          <form action="/paket/store" method="POST" id="formpaket">
             @csrf
             <div class="row">
               <div class="col-12">
@@ -239,7 +239,7 @@
                       <path d="M19 16v6"></path>
                    </svg>
                   </span>
-                  <input type="text" id="kode_cuti" value="" class="form-control" name="kode_cuti" placeholder="Kode Cuti">
+                  <input type="text" id="kode_paket" value="" class="form-control" name="kode_paket" placeholder="Kode paket">
                 </div>
               </div>
             </div>
@@ -253,7 +253,7 @@
                       <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                     </svg>
                   </span>
-                  <input type="text" id="nama_cuti" value="" name="nama_cuti" class="form-control" placeholder="Nama Cuti">
+                  <input type="text" id="nama_paket" value="" name="nama_paket" class="form-control" placeholder="Nama paket">
                 </div>
               </div>
             </div>
@@ -291,11 +291,11 @@
 </div>
 </div>
 
-  <div class="modal modal-blur fade" id="modal-editcuti" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal modal-blur fade" id="modal-editpaket" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Edit Data Cuti</h5>
+          <h5 class="modal-title">Edit Data paket</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" id="loadeditform">
@@ -329,25 +329,25 @@
 
     <script>
         $(function(){
-          $("#btnTambahcuti").click(function(){
-            $("#modal-inputcuti").modal("show");
+          $("#btnTambahpaket").click(function(){
+            $("#modal-inputpaket").modal("show");
           });
       
           $(".edit").click(function(){
-            var kode_cuti = $(this).attr('kode_cuti');
+            var kode_paket = $(this).attr('kode_paket');
             $.ajax({
               type: 'POST',
-              url: '/cuti/edit',
+              url: '/paket/edit',
               cache:false,
               data: {
                 _token: '{{ csrf_token(); }}',
-                kode_cuti: kode_cuti
+                kode_paket: kode_paket
               },
               success: function(respond){
                 $("#loadeditform").html(respond);
               }
             });
-            $("#modal-editcuti").modal("show");
+            $("#modal-editpaket").modal("show");
           });
       
           $(".delete-confirm").click(function(e){
@@ -372,11 +372,11 @@
               }
             })
           });
-          $("#formCuti").submit(function(){
-            var kode_cuti = $("#kode_cuti").val();
-            var nama_cuti = $("#nama_cuti").val();
+          $("#formpaket").submit(function(){
+            var kode_paket = $("#kode_paket").val();
+            var nama_paket = $("#nama_paket").val();
             var jml_hari = $("#jml_hari").val();
-            if(kode_cuti == "" || nama_cuti == "" || jml_hari == "") {
+            if(kode_paket == "" || nama_paket == "" || jml_hari == "") {
                 Swal.fire({
                   icon: 'error',
                   title: 'Gagal',

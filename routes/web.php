@@ -10,6 +10,7 @@ use App\Http\Controllers\KonfigurasiController;
 use App\Http\Controllers\BoardingController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\IzinAbsenController;
+use App\Http\Controllers\PaketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::middleware('auth:user')->group(function () {
 
     Route::get('/proseslogoutcontrol', [AuthController::class, 'proseslogoutcontrol']);
     Route::post('/dashboardcontrol/statusmitra', [DashboardController::class, 'statusmitra']);
+    Route::get('/dashboardcontrol/paket', [PaketController::class, 'index']);
 });
 
 Route::middleware('auth:karyawan')->group(function () {
