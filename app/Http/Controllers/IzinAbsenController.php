@@ -31,7 +31,10 @@ class IzinAbsenController extends Controller
         ->first();
         $lastkodeizin = $lastizin != null ? $lastizin->kode_izin : "";
         $format = "IZ".$bulan.$thn;
-        $kode_izin = buatkode($lastkodeizin,$format,3);
+        $nomor_baru = intval(substr($lastkodeizin, strlen($format))) + 1;
+        $nomor_baru_plus_nol = str_pad($nomor_baru, 3, "0", STR_PAD_LEFT);
+        $kode = $format . $nomor_baru_plus_nol;
+        $kode_izin = $kode;
         $data = array(
             'kode_izin' => $kode_izin,
             'nik' => $nik,
@@ -71,8 +74,10 @@ class IzinAbsenController extends Controller
         ->first();
         $lastkodeizin = $lastizin != null ? $lastizin->kode_izin : "";
         $format = "IZ".$bulan.$thn;
-        $kode_izin = buatkode($lastkodeizin,$format,3);
-
+        $nomor_baru = intval(substr($lastkodeizin, strlen($format))) + 1;
+        $nomor_baru_plus_nol = str_pad($nomor_baru, 3, "0", STR_PAD_LEFT);
+        $kode = $format . $nomor_baru_plus_nol;
+        $kode_izin = $kode;
         if ($request->hasFile('doc_sid')) {
             $doc_sid = $kode_izin . "." . $request->file('doc_sid')->getClientOriginalExtension();
         }else{
@@ -125,7 +130,10 @@ class IzinAbsenController extends Controller
         ->first();
         $lastkodeizin = $lastizin != null ? $lastizin->kode_izin : "";
         $format = "IZ".$bulan.$thn;
-        $kode_izin = buatkode($lastkodeizin,$format,3);
+        $nomor_baru = intval(substr($lastkodeizin, strlen($format))) + 1;
+        $nomor_baru_plus_nol = str_pad($nomor_baru, 3, "0", STR_PAD_LEFT);
+        $kode = $format . $nomor_baru_plus_nol;
+        $kode_izin = $kode;
         $data = array(
             'kode_izin' => $kode_izin,
             'nik' => $nik,
