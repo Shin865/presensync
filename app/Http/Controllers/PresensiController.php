@@ -121,7 +121,7 @@ class PresensiController extends Controller
          $password = Hash::make($request->password);
          $karyawan = DB::table('karyawan')->where('nik', $nik)->first();
          $request->validate([
-             'foto' => 'required|image|mimes:jpeg,png,jpg|max:2000',
+             'foto' => 'image|mimes:jpeg,png,jpg|max:2000',
          ]);
          if($request->hasFile('foto')){
             $foto = $nik.".".$request->file('foto')->getClientOriginalExtension();
@@ -301,7 +301,9 @@ class PresensiController extends Controller
         ->join('jabatan','jabatan.kode_jab','=','karyawan.kode_jab')
         ->first();
         $presensi = DB::table('presensi')
-        ->where('nik', $nik)
+        ->select('presensi.*','keterangan')
+        ->leftJoin('pengajuan_izin','presensi.kode_izin','=','pengajuan_izin.kode_izin')
+        ->where('presensi.nik', $nik)
         ->whereRaw('MONTH(tgl_presensi) ="'.$bulan.'"')
         ->whereRaw('YEAR(tgl_presensi) ="'.$tahun.'"')
         ->orderBy('tgl_presensi')
@@ -324,7 +326,7 @@ class PresensiController extends Controller
             $time = date('H:i:s');
             header("Content-type: application/vnd.ms-word");
             header("Content-Disposition: attachment; filename=Rekap Presensi ".$nik." ".$bln[$bulan]." ".$tahun." ".$time.".doc");
-            return view('presensi.cetaklaporanword',compact ('presensi','bln','karyawan','bulan','tahun'));
+            return view('presensi.cetaklaporan',compact ('presensi','bln','karyawan','bulan','tahun'));
         }
 
         return view('presensi.cetaklaporan',compact ('presensi','bln','karyawan','bulan','tahun'));

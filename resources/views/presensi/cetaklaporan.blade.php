@@ -133,10 +133,12 @@
                 <th>Foto</th>
                 <th>Jam Keluar</th>
                 <th>Foto</th>
+                <th>Status</th>
                 <th>Keterangan</th>
                 <th>Jml Jam</th>
           </tr>
           @foreach ($presensi as $item)
+          @if ($item->status == 'h')
             @php
                 $path_in = Storage::url('uploads/absensi/'.$item->foto_in);
                 $path_out = Storage::url('uploads/absensi/'.$item->foto_out);
@@ -147,7 +149,7 @@
                  <td>{{ date("d-m-Y",strtotime($item->tgl_presensi)) }}</td>
                  <td>{{ $item->jam_in }}</td>
                  <td>
-                    <img src="{{ url($path_in) }}" alt="" class="foto">
+                    <img src="{{ url($path_in) }}" alt="" class="foto"></td>
                  <td>{{ $item->jam_out != null ? $item->jam_out : 'Belum Absen' }}</td>
                  <td>
                     @if ($item->jam_out != null)
@@ -162,6 +164,7 @@
                      </svg>
                     @endif
                 </td>
+                <td style="text-align: center">{{ $item->status }}</td>
                  <td>
                     @if ($item->jam_in > '07:00:00')
                         Terlambat ({{ $jamtelat }})
@@ -182,6 +185,19 @@
                         {{ $jmljamkerja }}
                     </td>
                 </tr>
+            @else
+                <tr>
+                 <td>{{ $loop->iteration }}</td>
+                 <td>{{ date("d-m-Y",strtotime($item->tgl_presensi)) }}</td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                 <td style="text-align: center">{{ $item->status }}</td>
+                 <td>{{ $item->keterangan }}</td>
+                <td></td>
+                </tr>
+            @endif
           @endforeach
     </table>
     <table width="100%" style="margin-top:100px">

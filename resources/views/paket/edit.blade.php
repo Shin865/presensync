@@ -1,4 +1,4 @@
-<form action="/cuti/{{ $cuti->kode_cuti }}/update" method="POST" id="formCuti">
+<form action="/paket/{{ $paket->kode_paket }}/update" method="POST" id="formpaket">
     @csrf
     <div class="row">
       <div class="col-12">
@@ -14,7 +14,7 @@
               <path d="M19 16v6"></path>
            </svg>
           </span>
-          <input type="text" id="kode_cuti" value="{{ $cuti->kode_cuti }}" class="form-control" name="kode_cuti" placeholder="Kode cuti" readonly>
+          <input type="text" id="kode_paket" value="{{ $paket->kode_paket }}" class="form-control" name="kode_paket" placeholder="Kode paket" readonly>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
               <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
             </svg>
           </span>
-          <input type="text" id="nama_cuti" value="{{ $cuti->nama_cuti }}" name="nama_cuti" class="form-control" placeholder="Nama cuti">
+          <input type="text" id="nama_paket" value="{{ $paket->nama_paket }}" name="nama_paket" class="form-control" placeholder="Nama paket">
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
               </svg>
             </span>
-            <input type="text" id="jml_hari" value="{{ $cuti->jml_hari }}" name="jml_hari" class="form-control" placeholder="Jumlah Hari">
+            <input type="text" id="jml_hari" value="{{ $paket->jml_hari }}" name="jml_hari" class="form-control" placeholder="Jumlah Hari">
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ class karyawan extends Authenticatable
     protected $primaryKey = 'nik';
     protected $fillable = [
         'nik',
+        'id_admin',
         'nama_lengkap',
         'pangkat',
         'no_hp',
@@ -30,4 +31,10 @@ class karyawan extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'id_admin', 'id_admin');
+    }
+
 }

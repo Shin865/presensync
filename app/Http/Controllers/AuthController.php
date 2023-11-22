@@ -18,17 +18,29 @@ class AuthController extends Controller
     }
 
     public function prosesloginadmin(Request $request)
-    {
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect('/panel/dashboardadmin');
-        } else {
-            return redirect('/panel')->with(['warning' => 'Email atau Password salah']);
-        }   
+{
+    $credentials = ['email' => $request->email, 'password' => $request->password];
+   
+    if (Auth::guard('admin')->attempt($credentials)) {
+        $admin = Auth::guard('admin')->user();
+        
+        if ($admin->status == 'N') {
+            Auth::guard('admin')->logout();
+            return redirect('/panel')->with(['warning' => 'Akun dinonaktifkan.']);
+        }
+
+        $idAdmin = $admin->id_admin;
+        $request->session()->put('id_admin', $idAdmin);
+
+        return redirect('/panel/dashboardadmin');
+    } else {
+        return redirect('/panel')->with(['warning' => 'Email atau Password salah']);
     }
+}
 
     public function proseslogincontrol(Request $request)
     {
-        if (Auth::guard('user')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('user')->attempt(['name' => $request->name, 'password' => $request->password])) {
             return redirect('/control/dashboardcontrol');
         } else {
             return redirect('/control')->with(['warning' => 'Nama atau Password salah']);

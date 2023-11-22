@@ -11,6 +11,7 @@ use App\Http\Controllers\BoardingController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\IzinAbsenController;
 use App\Http\Controllers\PaketController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,10 +49,16 @@ Route::middleware(['guest:user'])->group(function () {
 
 Route::middleware('auth:user')->group(function () {
     Route::get('control/dashboardcontrol', [DashboardController::class, 'dashboardcontrol']);
+    Route::post('/control/{id_admin}/delete', [DashboardController::class, 'delete']);
 
     Route::get('/proseslogoutcontrol', [AuthController::class, 'proseslogoutcontrol']);
     Route::post('/dashboardcontrol/statusmitra', [DashboardController::class, 'statusmitra']);
     Route::get('/dashboardcontrol/paket', [PaketController::class, 'index']);
+    Route::post('/paket/store', [PaketController::class, 'store']);
+    Route::post('/paket/edit', [PaketController::class, 'edit']);
+    Route::post('/paket/{kode_paket}/update', [PaketController::class, 'update']);
+    Route::post('/paket/{kode_paket}/delete', [PaketController::class, 'delete']);
+
 });
 
 Route::middleware('auth:karyawan')->group(function () {

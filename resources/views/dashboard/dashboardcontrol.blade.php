@@ -153,16 +153,16 @@
                   </div>
                   <div class="row mt-2">
                     <div class="col-12">
-                      <form action="/mitra" method="GET">
+                      <form action="/control/dashboardcontrol" method="GET">
                         <div class="row">
                           <div class="col-6">
                             <div class="form-group">
-                              <input type="text" name="nama_mitra" id="nama_mitra" class="form-control" placeholder="Cari Nama Mitra" value="{{ Request('name') }}">
+                              <input type="text" name="nama_admin" id="nama_admin" class="form-control" placeholder="Cari Nama Mitra" value="{{ Request('nama_admin') }}">
                             </div>
                           </div>
                           <div class="col-4">
                             <div class="form-group">
-                             <select name="status" id="status" class="form-select">
+                              <select name="status" id="status" class="form-select">
                                 <option value="">-- Pilih Status --</option>
                                 <option value="Y" {{ Request('status') == 'Y' ? 'selected' : '' }}>Aktif</option>
                                 <option value="N" {{ Request('status') == 'N' ? 'selected' : '' }}>Tidak Aktif</option>
@@ -194,6 +194,8 @@
                                 <th>Email</th>
                                 <th>Status</th>
                                 <th>Paket</th>
+                                <th>Tgl Daftar</th>
+                                <th>Tgl Expired</th>
                                 <th>Aksi</th>
                             </tr>   
                         </thead>
@@ -210,8 +212,11 @@
                                         <span class="badge bg-danger" style="color:white">Tidak Aktif</span>
                                     @endif
                                 </td>
-                                <td>{{ $item->paket }}</td>
+                                <td>{{ $item->kode_paket }}</td>
+                                <td>{{ $item->tgl_daftar }}</td>
+                                <td>{{ $item->tgl_expired }}</td>
                                 <td>
+                                  <div class="btn-group">
                                   <a href="#" class="btn btn-sm btn-primary approvemitra" id_admin="{{ $item->id_admin }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -219,8 +224,20 @@
                                         <path d="M11 13l9 -9"></path>
                                         <path d="M15 4h5v5"></path>
                                      </svg>
-                                     Aksi
-                                </a>
+                                    </a>
+                                     <form action="/control/{{ $item->id_admin }}/delete" method="POST" style="margin-left:5px">
+                                      @csrf
+                                      <a class="btn btn-danger btn-sm delete-confirm"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M4 7l16 0"></path>
+                                        <path d="M10 11l0 6"></path>
+                                        <path d="M14 11l0 6"></path>
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                        </svg>
+                                      </a>
+                                      </form>
+                                  </div>
                               </td>
                           </tr>
                               </tr>
@@ -288,6 +305,7 @@
     <script src="{{ asset('tabler/dist/js/tabler.min.js?1692870487') }}" defer></script>
     <script src="{{ asset('tabler/dist/js/demo.min.js?1692870487') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/js/lib/jquery.mask.min.js') }}"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
@@ -302,6 +320,28 @@
               var id_admin = $(this).attr('id_admin');
               $('#id_form').val(id_admin);
               $('#modal-mitra').modal('show');
+          });
+          $(".delete-confirm").click(function(e){
+            var form = $(this).closest("form");
+            e.preventDefault();
+            Swal.fire({
+              title: 'Yakin ?',
+              text: "Apakah Anda Yakin Ingin Menghapus Data Ini",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                form.submit();
+                Swal.fire(
+                  'Deleted!',
+                  'Data Berhasil Di Hapus',
+                  'success'
+                )
+              }
+            })
           });
       });
     </script>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -85,16 +85,16 @@ class DashboardController extends Controller
     }
 
     public function dashboardcontrol(Request $request){
-        $query = User::query();
+        $query = Admin::query();
         $query->select('admins.*');
-        $query->orderBy('name');
-        if(!empty($request->name)){
-            $query->where('name','like','%'.$request->name.'%');
+        $query->orderBy('nama_admin');
+        if(!empty($request->nama_admin)){
+            $query->where('nama_admin','like','%'.$request->nama_admin.'%');
         }
         if($request->status != ""){
             $query->where('status', $request->status);
         }
-        $admins = DB::table('admins')->paginate(5);
+        $admins = $query->paginate(5);
         return view('dashboard.dashboardcontrol',compact('admins'));
     }
 
@@ -103,6 +103,15 @@ class DashboardController extends Controller
         $status = $request->status;
         $update = DB::table('admins')->where('id_admin', $id_form)->update(['status' => $status]);
         if($update){
+            return redirect('/control/dashboardcontrol')->with(['success' => 'Data Berhasil di Update']);
+         }else{
+             return redirect('/control/dashboardcontrol')->with(['error' => 'Data Gagal di Update']);
+         }
+    }
+    
+    public function delete($id_admin){
+        $delete = DB::table('admins')->where('id_admin',$id_admin)->delete();
+        if($delete){
             return redirect('/control/dashboardcontrol')->with(['success' => 'Data Berhasil di Update']);
          }else{
              return redirect('/control/dashboardcontrol')->with(['error' => 'Data Gagal di Update']);

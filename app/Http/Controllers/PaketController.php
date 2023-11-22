@@ -16,18 +16,18 @@ class PaketController extends Controller
 
     public function store(Request $request)
     {
-        $kode_cuti = $request->kode_cuti;
-        $nama_cuti = $request->nama_cuti;
+        $kode_paket = $request->kode_paket;
+        $nama_paket = $request->nama_paket;
         $jml_hari = $request->jml_hari;
 
-        $cekcuti = DB::table('master_cuti')->where('kode_cuti', $kode_cuti)->count();
-        if ($cekcuti > 0) {
-            return Redirect::back()->with('error','Kode Cuti '. $kode_cuti. ' sudah ada');
+        $cekpaket = DB::table('master_paket')->where('kode_paket', $kode_paket)->count();
+        if ($cekpaket > 0) {
+            return Redirect::back()->with('error','Kode Paket '. $kode_paket. ' sudah ada');
         }
         try {
-            DB::table('master_cuti')->insert([
-                'kode_cuti' => $kode_cuti,
-                'nama_cuti' => $nama_cuti,
+            DB::table('master_paket')->insert([
+                'kode_paket' => $kode_paket,
+                'nama_paket' => $nama_paket,
                 'jml_hari' => $jml_hari
             ]);
             return Redirect::back()->with('success','Data berhasil disimpan');
@@ -38,19 +38,19 @@ class PaketController extends Controller
 
     public function edit(Request $request)
     {
-        $kode_cuti = $request->kode_cuti;
-        $cuti = DB::table('master_cuti')->where('kode_cuti', $kode_cuti)->first();
-        return view('cuti.edit', compact('cuti'));
+        $kode_paket = $request->kode_paket;
+        $paket = DB::table('master_paket')->where('kode_paket', $kode_paket)->first();
+        return view('paket.edit', compact('paket'));
     }
 
-    public function update(Request $request, $kode_cuti){
-        $nama_cuti = $request->nama_cuti;
+    public function update(Request $request, $kode_paket){
+        $nama_paket = $request->nama_paket;
         $jml_hari = $request->jml_hari;
         $data = array(
-            'nama_cuti' =>$nama_cuti,
+            'nama_paket' =>$nama_paket,
             'jml_hari' =>$jml_hari
         );
-        $update = DB::table('master_cuti')->where('kode_cuti',$kode_cuti)->update($data);
+        $update = DB::table('master_paket')->where('kode_paket',$kode_paket)->update($data);
         if($update){
             return Redirect::back()->with('success','Data berhasil diupdate');
         }else{
@@ -58,8 +58,8 @@ class PaketController extends Controller
         }
     }
 
-    public function delete($kode_cuti){
-        $delete = DB::table('master_cuti')->where('kode_cuti',$kode_cuti)->delete();
+    public function delete($kode_paket){
+        $delete = DB::table('master_paket')->where('kode_paket',$kode_paket)->delete();
         if($delete){
             return Redirect::back()->with('success','Data berhasil dihapus');
         }else{

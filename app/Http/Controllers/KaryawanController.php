@@ -13,10 +13,13 @@ class KaryawanController extends Controller
 {
     public function index(Request $request)
     {
+       
+        $idAdmin = $request->session()->get('id_admin');
         $query = Karyawan::query();
         $query->select('karyawan.*', 'nama_jab');
         $query->join('jabatan', 'karyawan.kode_jab', '=', 'jabatan.kode_jab');
         $query->orderBy('nama_lengkap');
+        $query->where('karyawan.id_admin', $idAdmin);
         if(!empty($request->nama_karyawan)){
             $query->where('nama_lengkap','like','%'.$request->nama_karyawan.'%');
         }
@@ -32,6 +35,7 @@ class KaryawanController extends Controller
 
     public function store(Request $request)
     {
+        $idAdmin =$request->session()->get('id_admin');
         $nik = $request->nik;
         $nama_lengkap = $request->nama_lengkap;
         $pangkat = $request->pangkat;
@@ -46,6 +50,7 @@ class KaryawanController extends Controller
          try{
             $data = array(
                 'nik' =>$nik,
+                'id_admin' => $idAdmin,
                 'nama_lengkap' =>$nama_lengkap,
                 'pangkat' => $pangkat,
                 'no_hp' => $no_hp,
@@ -70,6 +75,7 @@ class KaryawanController extends Controller
     }
 
     public function edit(Request $request){
+        $idAdmin =$request->session()->get('id_admin');
         $nik = $request->nik;
         $jabatan = DB::table('jabatan')->get();
         $karyawan = DB::table('karyawan')->where('nik',$nik)->first();
@@ -77,7 +83,7 @@ class KaryawanController extends Controller
     }
 
     public function update(Request $request){
-
+        $idAdmin =$request->session()->get('id_admin');
         $nik = $request->nik;
         $nama_lengkap = $request->nama_lengkap;
         $pangkat = $request->pangkat;
@@ -93,6 +99,7 @@ class KaryawanController extends Controller
          try{
             $data = array(
                 'nama_lengkap' =>$nama_lengkap,
+                'id_admin' => $idAdmin, // tambahan 'id_admin' => $idAdmin, agar tidak terjadi error 'Column not found: 1054 Unknown column 'id_admin' in 'field list'
                 'pangkat' => $pangkat,
                 'no_hp' => $no_hp,
                 'kode_jab' => $kode_jab,

@@ -43,12 +43,35 @@ class IzinAbsenController extends Controller
             'status' => $status,
             'keterangan' => $keterangan,
         );
-        $simpan = DB::table('pengajuan_izin')->insert($data);
-        if($simpan){
-            return redirect('/presensi/izin')->with(['success' => 'Data Berhasil di Simpan']);
-         }else{
-             return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan']);
-         }
+
+        $cekpresensi = DB::table('presensi')
+        ->whereBetween('tgl_presensi', [$tgl_izin_dari, $tgl_izin_sampai]);
+
+        $cekpengajuan = DB::table('pengajuan_izin')
+        ->whereRaw('"' . $tgl_izin_dari.'" BETWEEN tgl_izin_dari AND tgl_izin_sampai');
+
+        $datapresensi = $cekpresensi->get();
+        if($cekpresensi->count() > 0){
+            $blacklist = "";
+            foreach($datapresensi as $d){
+                $blacklist .= date('d-m-Y',strtotime( $d->tgl_presensi)).", ";
+            }
+            return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan, Tanggal ' .$blacklist. 'Sudah Ada']);
+        }else if($cekpengajuan->count() > 0){
+            $blacklist = "";
+            foreach($cekpengajuan->get() as $d){
+                $blacklist .= date('d-m-Y',strtotime( $d->tgl_izin_dari)).", ";
+            }
+            return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan, Tanggal ' .$blacklist. 'Sudah Ada']);
+        }
+        else{
+            $simpan = DB::table('pengajuan_izin')->insert($data);
+            if($simpan){
+                return redirect('/presensi/izin')->with(['success' => 'Data Berhasil di Simpan']);
+             }else{
+                 return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan']);
+             }
+        }
     }
 
     public function createsakit()
@@ -92,16 +115,33 @@ class IzinAbsenController extends Controller
             'keterangan' => $keterangan,
             'doc_sid' => $doc_sid,
         );
-        $simpan = DB::table('pengajuan_izin')->insert($data);
-        if($simpan){
-            if ($request->hasFile('doc_sid')) {
-                $doc_sid = $kode_izin . "." . $request->file('doc_sid')->getClientOriginalExtension();
-                $folderPath = "public/uploads/sid/";
-                $request->file('doc_sid')->storeAs($folderPath, $doc_sid);
-              }   
-            return redirect('/presensi/izin')->with(['success' => 'Data Berhasil di Simpan']);
-         }else{
-             return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan']);
+
+        $cekpresensi = DB::table('presensi')
+        ->whereBetween('tgl_presensi', [$tgl_izin_dari, $tgl_izin_sampai]);
+
+        $cekpengajuan = DB::table('pengajuan_izin')
+        ->whereRaw('"' . $tgl_izin_dari.'" BETWEEN tgl_izin_dari AND tgl_izin_sampai');
+
+        $datapresensi = $cekpresensi->get();
+        if($cekpresensi->count() > 0){
+            $blacklist = "";
+            foreach($datapresensi as $d){
+                $blacklist .= date('d-m-Y',strtotime( $d->tgl_presensi)).", ";
+            }
+            return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan, Tanggal ' .$blacklist. 'Sudah Ada']);
+        }else if($cekpengajuan->count() > 0){
+            $blacklist = "";
+            foreach($cekpengajuan->get() as $d){
+                $blacklist .= date('d-m-Y',strtotime( $d->tgl_izin_dari)).", ";
+            }
+            return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan, Tanggal ' .$blacklist. 'Sudah Ada']);
+        }else{
+            $simpan = DB::table('pengajuan_izin')->insert($data);
+            if($simpan){
+                return redirect('/presensi/izin')->with(['success' => 'Data Berhasil di Simpan']);
+             }else{
+                 return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan']);
+             }
          }
     }
 
@@ -134,6 +174,26 @@ class IzinAbsenController extends Controller
         $nomor_baru_plus_nol = str_pad($nomor_baru, 3, "0", STR_PAD_LEFT);
         $kode = $format . $nomor_baru_plus_nol;
         $kode_izin = $kode;
+
+        function hitunghari($tanggal_mulai, $tanggal_akhir){
+            $tanggal_1 = date_create($tanggal_mulai);
+            $tanggal_2 = date_create($tanggal_akhir); // waktu sekarang
+            $diff = date_diff( $tanggal_1, $tanggal_2);
+    
+            return $diff->days + 1;
+        }   
+
+        $jmlhari =  hitunghari($tgl_izin_dari, $tgl_izin_sampai);
+        $cuti = DB::table('master_cuti')->where('kode_cuti', $kode_cuti)->first();
+        $jml_cuti = $cuti->jml_hari;
+        $cutidigunakan = DB::table('presensi')
+        ->whereRaw('Year(tgl_presensi) = "'.$tahun.'"')
+        ->where('status', 'c')
+        ->where('nik', $nik)
+        ->count();
+
+        $sisacuti = $jml_cuti - $cutidigunakan;
+
         $data = array(
             'kode_izin' => $kode_izin,
             'nik' => $nik,
@@ -143,12 +203,37 @@ class IzinAbsenController extends Controller
             'status' => $status,
             'keterangan' => $keterangan,
         );
-        $simpan = DB::table('pengajuan_izin')->insert($data);
-        if($simpan){
-            return redirect('/presensi/izin')->with(['success' => 'Data Berhasil di Simpan']);
-         }else{
-             return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan']);
-         }
+        
+        $cekpresensi = DB::table('presensi')
+        ->whereBetween('tgl_presensi', [$tgl_izin_dari, $tgl_izin_sampai]);
+
+        $cekpengajuan = DB::table('pengajuan_izin')
+        ->whereRaw('"' . $tgl_izin_dari.'" BETWEEN tgl_izin_dari AND tgl_izin_sampai');
+
+        $datapresensi = $cekpresensi->get();
+
+        if($jmlhari > $sisacuti){
+            return redirect('/presensi/izin')->with(['error' => 'Sisa Cuti Melebihi Jumlah Cuti, Sisa Cuti Anda ' .$sisacuti. ' Hari']);
+        }else if($cekpresensi->count() > 0){
+            $blacklist = "";
+            foreach($datapresensi as $d){
+                $blacklist .= date('d-m-Y',strtotime( $d->tgl_presensi)).", ";
+            }
+            return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan, Tanggal ' .$blacklist. 'Sudah Ada']);
+        }else if($cekpengajuan->count() > 0){
+            $blacklist = "";
+            foreach($cekpengajuan->get() as $d){
+                $blacklist .= date('d-m-Y',strtotime( $d->tgl_izin_dari)).", ";
+            }
+            return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan, Tanggal ' .$blacklist. 'Sudah Ada']);
+        }else{
+            $simpan = DB::table('pengajuan_izin')->insert($data);
+            if($simpan){
+                return redirect('/presensi/izin')->with(['success' => 'Data Berhasil di Simpan']);
+             }else{
+                 return redirect('/presensi/izin')->with(['error' => 'Data Gagal di Simpan']);
+             }
+        }
     }
 
     public function edit($kode_izin)

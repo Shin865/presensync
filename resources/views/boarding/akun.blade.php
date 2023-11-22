@@ -125,11 +125,12 @@
                                 </div>
                                 <div class="row mt-2">
                                   <div class="col-12">
-                                    <select name="paket" id="paket" class="form-select">
-                                      <option value="">-- Pilih Paket --</option>
-                                      <option value="3">Paket 3 Bulan</option>
-                                      <option value="6">Paket 6 Bulan</option>
-                                    </select>
+                                    <select name="kode_paket" id="kode_paket" class="form-control">
+                                      <option value="">Pilih Jenis paket</option>
+                                      @foreach($masterpaket as $d)
+                                      <option value="{{ $d->kode_paket }}">{{ $d->nama_paket }}</option>
+                                      @endforeach
+                                  </select>
                                   </div>
                                 </div>
                       <div class="row mt-2">

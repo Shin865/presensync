@@ -50,8 +50,8 @@
                   <form action="/proseslogincontrol" method="POST" autocomplete="off" novalidate>
                     @csrf
                     <div class="mb-3">
-                      <label class="form-label">Email address</label>
-                      <input type="email" name="email" class="form-control" placeholder="your@email.com" autocomplete="off">
+                      <label class="form-label">Username</label>
+                      <input type="text" name="name" class="form-control" placeholder="Your Username" autocomplete="off">
                     </div>
                     <div class="mb-2">
                       <label class="form-label">
