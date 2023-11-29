@@ -57,10 +57,10 @@
               <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                  Registrasi
+                  Pembayaran
                 </div>
                 <h2 class="page-title">
-                  Buat Akun Untuk Berlangganan
+                  Isi Nama Mitra Dan Email Yang Terdaftar
                 </h2>
               </div>
             </div>
@@ -68,73 +68,48 @@
         </div>
         <div class="page-body">
           <div class="container-xl">
-              <div class="col-6">
-                  <div class="card">
-                      <div class="card-body">
-                          @php
-                          if(Session::get('success')){
-                            echo '<div class="alert alert-success">'.Session::get('success').'</div>';
-                          }elseif(Session::get('error')){
-                             echo '<div class="alert alert-danger">'.Session::get('error').'</div>';
-                           }
-                          @endphp
-                          <form action="/boarding/register" id="formregis" method="POST">
-                            @csrf
-                              <div class="row">
-                                <div class="col-12">
+            <div class="row">
+              <div class="col-12">
+                  @php
+                    if(Session::get('success')){
+                      echo '<div class="alert alert-success">'.Session::get('success').'</div>';
+                    }elseif(Session::get('error')){
+                      echo '<div class="alert alert-danger">'.Session::get('error').'</div>';
+                    }
+                    @endphp
+                  </div>
+                </div>
+              <div class="row">
+                <div class="col-12">
+                  <form action="/boarding/pembayaranpaket1" id="formregis" method="POST" enctype="multipart/form-data">
+                     @csrf 
+                     <div class="row">
+                      <div class="col-6">
+                      <div class="card">
+                          <div class="card-body">
                                   <div class="input-icon mb-3">
                                     <span class="input-icon-addon">
-                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"></path>
-                                        <path d="M3 7l9 6l9 -6"></path>
+                                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                                      </svg>
                                     </span>
-                                    <input type="text" id="nama_admin" value="" class="form-control" name="nama_admin" placeholder="Nama Mitra">
+                                    <input type="text" id="nama_mitra" value="" class="form-control" name="nama_mitra" placeholder="Nama Mitra">
                                   </div>
-                                </div>
-                              </div>
-                              <div class="row">
-                                  <div class="col-12">
                                     <div class="input-icon mb-3">
                                       <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                          <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                                          <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                          <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"></path>
+                                          <path d="M3 7l9 6l9 -6"></path>
                                        </svg>
                                       </span>
                                       <input type="email" id="email" value="" class="form-control" name="email" placeholder="Email">
                                     </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-12">
                                     <div class="input-icon mb-3">
-                                      <span class="input-icon-addon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                          <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"></path>
-                                          <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
-                                          <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
-                                       </svg>
-                                      </span>
-                                      <input type="password" id="password" value="" name="password" class="form-control" placeholder="Password">
+                                        <input type="file" name="bukti" class="form-control" id="bukti">
                                     </div>
-                                  </div>
-                                </div>
-                                <div class="row mt-2">
-                                  <div class="col-12">
-                                    <select name="kode_paket" id="kode_paket" class="form-control">
-                                      <option value="">Pilih Jenis paket</option>
-                                      @foreach($masterpaket as $d)
-                                      <option value="{{ $d->kode_paket }}">{{ $d->nama_paket }}</option>
-                                      @endforeach
-                                  </select>
-                                  </div>
-                                </div>
-                      <div class="row mt-2">
-                        <div class="col-12">
                           <div class="form-group">
                             <button class="btn btn-primary w-100" type="submit">
                               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -145,12 +120,30 @@
                              Simpan
                             </button>
                           </div>
+                          </form>
                         </div>
                       </div>
-                          </form>
                       </div>
-                  </div>
-              </div>
+              <div class="col-6">
+                <div class="card" style="position: absolute; right:10%; top:15%">
+                    <div class="card-body">
+                      <div class="input-icon mb-2">
+                        <p>Detail Pembayaran</p>
+                        <input type="text" id="paket" value="PAKET 3 BULAN" class="form-control" name="paket" placeholder="PAKET 3 BULAN" readonly>
+                         </div>
+
+                         <div class="input-icon mb-1">
+                        <input type="text" id="" value="Total Bayar" class="form-control" name="" placeholder="Total Bayar" readonly>
+                        <input type="text" id="" value="RP. 125.000" class="form-control" name="harga" placeholder="RP. 125.000" readonly>
+                         </div>
+                         <p style="color: crimson">Bayar menggunakan link dibawah ini</p>
+                      <img src="{{ asset('/tabler/static/saweria.png')}}" width="300" height="290" >
+                      <br>
+                      <center><a href="https://saweria.co/JukiKun">Saweria</a></center>
+                    </div>
+                </div>
+            </div>
+
           </div>
       </div>
     <!-- Libs JS -->

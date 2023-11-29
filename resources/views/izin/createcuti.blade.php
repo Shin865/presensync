@@ -100,33 +100,6 @@
         $("#tgl_izin_dari, #tgl_izin_sampai").change(function(e) { 
             loadjumlahhari();
         });
-
-    //    $("#tgl_izin").change(function() {
-    //        var tgl_izin = $(this).val();
-    //        $.ajax({
-    //            type: "POST",
-    //            url: "/presensi/cekizin",
-    //            data: {
-    //                "_token": "{{ csrf_token() }}",
-    //                "tgl_izin": tgl_izin
-    //            },
-    //            cache: false,
-    //            success: function(respond) {
-    //                if(respond > 0) {
-    //                    Swal.fire({
-    //                        icon: 'error',
-    //                        title: 'Gagal',
-    //                        text: 'Anda sudah mengajukan izin pada tanggal tersebut',
-    //                        showConfirmButton: false,
-    //                        timer: 1500,
-    //                    }).then((result) => {
-    //                        $("#tgl_izin").val("");
-    //                    });
-    //                }
-    //           }
-    //        });
-    //    });
-
         $("#formizin").submit(function(e) {
             var tgl_izin_dari = $("#tgl_izin_dari").val();
             var tgl_izin_sampai = $("#tgl_izin_sampai").val();

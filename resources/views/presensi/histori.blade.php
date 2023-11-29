@@ -13,49 +13,43 @@
 <!-- * App Header -->
 @endsection
 @section('content')
-<div class="row" style="margin-top:70px">
+<div class="row">
     <div class="col">
-        <div class="row">
-            <div class="col-12">
+        <div class="row" style="margin-top:65px">
+            <div class="col-6">
                 <div class="form-group">
                     <select name="bulan" id="bulan" class="form-control">
                         <option value="">Bulan</option>
                         @for($i=1;$i<=12;$i++)
-                        <option value="{{ $i }}" {{ date('m') == $i ? 'selected' : '' }}>{{ $bln[$i] }}</option>
+                        <option {{ Request('bulan') == $i ? 'selected' : '' }} value="{{ $i }}">{{ $bln[$i] }}</option>
                         @endfor
                     </select>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <div class="form-group">
                     <select name="tahun" id="tahun" class="form-control">
                         <option value="">Tahun</option>
-                        @php
-                        $thnmulai = 2022;
-                        $thn = date('Y');
-                        @endphp
-                        @for($i=$thnmulai;$i<=$thn;$i++)
-                        <option value="{{ $i }}" {{ date('Y') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                        @for($i=2022;$i<=date("Y");$i++)
+                        <option {{ Request('tahun') == $i ? 'selected' : '' }} value="{{ $i }}">{{ $i }}</option>
                         @endfor
                     </select>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                <button class="btn btn-primary btn-block" id="getdata">
-                    <ion-icon name="search-outline"></ion-icon>Cari</button>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button class="btn btn-primary btn-block" id="getdata">Cari Data</button>
                 </div>
             </div>
+    </div>
+    </div>
+        <div class="row mt-2" style="position: fixed; width: 100%; margin: auto; overflow-y:scroll; height: 430px">
+            <div class="col" id="showhistori">
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col" id="showhistori">
-</div>
+
 @endsection
 
 @push('myscript')

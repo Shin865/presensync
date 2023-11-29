@@ -17,6 +17,7 @@ class DashboardController extends Controller
         $nik = Auth::guard('karyawan')->user()->nik;
         $presensihariini = DB::table('presensi')
         ->where('nik', $nik)
+        ->where('status', 'h')
         ->where('tgl_presensi', $hariini)
         ->first();
         $historibulan = DB::table('presensi')
@@ -69,19 +70,50 @@ class DashboardController extends Controller
     }
 
     public function dashboardadmin(){
+
         $hariini = date('Y-m-d');
-        $rekappresensi = DB::table('presensi')
-        ->selectRaw('COUNT(nik) as jmlhadir, SUM(IF(jam_in > "07:00",1,0)) as jmltelat')
-        ->where('tgl_presensi', $hariini)
-        ->first();
-
-        $rekapizin = DB::table('pengajuan_izin')
-        ->selectRaw('SUM(IF(status="i",1,0)) as jmlizin, SUM(IF(status="s",1,0)) as jmlsakit')
-        ->where('tgl_izin_dari', $hariini)
-        ->where('status_approved', 1)
-        ->first();
-
-        return view('dashboard.dashboardadmin',compact('rekappresensi','rekapizin'));
+             
+                // Ambil id admin dari sesi
+                $adminId = session()->get('id_admin');
+             
+                // Gunakan relasi untuk mendapatkan data karyawan yang terkait dengan admin
+                $karyawans = Admin::find($adminId)->karyawans;
+            
+                // Inisialisasi variabel untuk menyimpan hasil rekapan
+                $rekappresensi = [
+                    'jmlhadir' => 0,
+                    'jmltelat' => 0,
+                ];
+                $rekapizin = [
+                    'jmlizin' => 0,
+                    'jmlsakit' => 0,
+                ];
+            
+                // Loop melalui karyawan dan tambahkan rekapan mereka
+                foreach ($karyawans as $karyawan) {
+                    $presensi = DB::table('presensi')
+                        ->selectRaw('COUNT(nik) as jmlhadir, SUM(IF(jam_in > "07:00",1,0)) as jmltelat')
+                        ->where('tgl_presensi', $hariini)
+                        ->where('nik', $karyawan->nik)
+                        ->first();
+            
+                    // Tambahkan rekapan presensi karyawan
+                    $rekappresensi['jmlhadir'] += $presensi->jmlhadir;
+                    $rekappresensi['jmltelat'] += $presensi->jmltelat;
+            
+                    $izin = DB::table('pengajuan_izin')
+                        ->selectRaw('SUM(IF(status="i",1,0)) as jmlizin, SUM(IF(status="s",1,0)) as jmlsakit')
+                        ->where('tgl_izin_dari', $hariini)
+                        ->where('nik', $karyawan->nik)
+                        ->where('status_approved', 1)
+                        ->first();
+            
+                    // Tambahkan rekapan izin karyawan
+                    $rekapizin['jmlizin'] += $izin->jmlizin;
+                    $rekapizin['jmlsakit'] += $izin->jmlsakit;
+                }
+            
+                return view('dashboard.dashboardadmin', compact('rekappresensi', 'rekapizin'));
     }
 
     public function dashboardcontrol(Request $request){

@@ -66,4 +66,20 @@ class PaketController extends Controller
             return Redirect::back()->with('error','Data gagal dihapus');
         }
     }
+
+    public function bukti()
+    {
+        $bukti = DB::table('pembayaran')
+        ->paginate(3);
+        return view('paket.bukti', compact('bukti'));
+    }
+
+    public function deletebukti($id_pembayaran){
+        $delete = DB::table('pembayaran')->where('id_pembayaran',$id_pembayaran)->delete();
+        if($delete){
+            return Redirect::back()->with('success','Data berhasil dihapus');
+        }else{
+            return Redirect::back()->with('error','Data gagal dihapus');
+        }
+    }
 }

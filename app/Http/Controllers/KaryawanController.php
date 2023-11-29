@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Karyawan;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -99,7 +100,7 @@ class KaryawanController extends Controller
          try{
             $data = array(
                 'nama_lengkap' =>$nama_lengkap,
-                'id_admin' => $idAdmin, // tambahan 'id_admin' => $idAdmin, agar tidak terjadi error 'Column not found: 1054 Unknown column 'id_admin' in 'field list'
+                'id_admin' => $idAdmin,
                 'pangkat' => $pangkat,
                 'no_hp' => $no_hp,
                 'kode_jab' => $kode_jab,
@@ -127,6 +128,21 @@ class KaryawanController extends Controller
             return Redirect::back()->with(['success' => 'Data Berhasil Terhapus']);
         }else{
             return Redirect::back()->with(['error' => 'Data Gagal Terhapus']);
+        }
+    }
+
+    public function resetpassword($nik){
+        $nik = Crypt::decrypt($nik);
+        $password = Hash::make(12345);
+        $reset = DB::table('karyawan')
+        ->where('nik',$nik)
+        ->update([
+            'password' => $password
+        ]);
+        if($reset){
+            return Redirect::back()->with(['success' => 'Password Berhasil di Reset']);
+        }else{
+            return Redirect::back()->with(['error' => 'Password Gagal di Reset']);
         }
     }
 

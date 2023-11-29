@@ -38,7 +38,7 @@
                       </div>
                       <div class="col">
                         <div class="font-weight-medium">
-                          {{ $rekappresensi->jmlhadir }}
+                          {{ $rekappresensi['jmlhadir'] }}
                         </div>
                         <div class="text-secondary">
                           Karyawan Hadir
@@ -68,7 +68,7 @@
                       </div>
                       <div class="col">
                         <div class="font-weight-medium">
-                            {{ $rekapizin->jmlizin != null ? $rekapizin->jmlizin : 0 }}
+                        {{ $rekapizin['jmlizin'] != null ? $rekapizin['jmlizin'] : 0 }}
                         </div>
                         <div class="text-secondary">
                           karyawan Izin
@@ -97,7 +97,7 @@
                       </div>
                       <div class="col">
                         <div class="font-weight-medium">
-                            {{ $rekapizin->jmlsakit != null ? $rekapizin->jmlsakit : 0 }}
+                        {{ $rekapizin['jmlsakit'] != null ? $rekapizin['jmlsakit'] : 0 }}
                         </div>
                         <div class="text-secondary">
                           karyawan Sakit
@@ -125,7 +125,7 @@
                       </div>
                       <div class="col">
                         <div class="font-weight-medium">
-                            {{ $rekappresensi->jmltelat }}
+                        {{ $rekappresensi['jmltelat'] }}
                         </div>
                         <div class="text-secondary">
                           karyawan Telat

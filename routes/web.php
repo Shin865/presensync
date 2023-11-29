@@ -59,6 +59,9 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/paket/{kode_paket}/update', [PaketController::class, 'update']);
     Route::post('/paket/{kode_paket}/delete', [PaketController::class, 'delete']);
 
+    Route::get('/dashboardcontrol/bukti', [PaketController::class, 'bukti']);
+    Route::post('/control/{id_pembayaran}/deletebukti', [PaketController::class, 'deletebukti']);
+
 });
 
 Route::middleware('auth:karyawan')->group(function () {
@@ -107,6 +110,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/karyawan/edit', [KaryawanController::class, 'edit']);
     Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'update']);
     Route::post('/karyawan/{nik}/delete', [KaryawanController::class, 'delete']);
+    Route::get('/karyawan/{nik}/resetpassword', [KaryawanController::class, 'resetpassword']);
 
     Route::get('/jabatan', [JabatanController::class, 'index']);
     Route::post('/jabatan/store', [JabatanController::class, 'store']);
@@ -138,3 +142,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/boarding', [BoardingController::class, 'boarding']);
     Route::get('/boarding/akun', [BoardingController::class, 'akun']);
     Route::post('/boarding/register', [BoardingController::class, 'register']);
+    Route::get('/boarding/pembayaran1', [BoardingController::class, 'pembayaran1']);
+    Route::get('/boarding/pembayaran2', [BoardingController::class, 'pembayaran2']);
+    Route::post('/boarding/pembayaranpaket1', [BoardingController::class, 'pembayaranpaket1']);
+    Route::post('/boarding/pembayaranpaket2', [BoardingController::class, 'pembayaranpaket2']);

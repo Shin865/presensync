@@ -182,9 +182,12 @@ class PresensiController extends Controller
         $tahun = $request->tahun;
         $nik = Auth::guard('karyawan')->user()->nik;
         $histori = DB::table('presensi')
+        ->select('presensi.*', 'keterangan','doc_sid','master_cuti.*')
+        ->leftJoin('pengajuan_izin', 'presensi.kode_izin', '=', 'pengajuan_izin.kode_izin')
+        ->leftJoin('master_cuti', 'pengajuan_izin.kode_cuti', '=', 'master_cuti.kode_cuti')
+        ->where('presensi.nik', $nik)
         ->whereRaw('MONTH(tgl_presensi) ="'.$bulan.'"')
         ->whereRaw('YEAR(tgl_presensi) ="'.$tahun.'"')
-        ->where('nik', $nik)
         ->orderBy('tgl_presensi')
         ->get();
 
@@ -254,11 +257,13 @@ class PresensiController extends Controller
     }
 
     public function getpresensi(Request $request){
+        $adminId = Auth::guard('admin')->user()->id_admin;
         $tanggal = $request->tanggal;
         $presensi = DB::table('presensi')->select('presensi.*','nama_lengkap','nama_jab','keterangan')
         ->leftJoin('pengajuan_izin','presensi.kode_izin','=','pengajuan_izin.kode_izin')
         ->join('karyawan','karyawan.nik','=','presensi.nik')
         ->join('jabatan','jabatan.kode_jab','=','karyawan.kode_jab')
+        ->where('id_admin', $adminId)
         ->where('tgl_presensi', $tanggal)
         ->get();
 
@@ -274,7 +279,6 @@ class PresensiController extends Controller
     }
 
     public function laporan(){
-
         $bln = array(
             1 => 'Januari',
             2 => 'Februari',
@@ -289,8 +293,11 @@ class PresensiController extends Controller
             11 => 'November',
             12 => 'Desember'
         );
-        $karyawan = DB::table('karyawan')->orderBy('nama_lengkap')->get();
-        return view('presensi.laporan',compact ('bln','karyawan'));
+    $adminId = Auth::guard('admin')->user()->id_admin;
+
+    $karyawan = DB::table('karyawan')->where('id_admin', $adminId)->orderBy('nama_lengkap')->get();
+
+    return view('presensi.laporan', compact('bln', 'karyawan'));
     }
 
     public function cetaklaporan(Request $request){
@@ -353,6 +360,7 @@ class PresensiController extends Controller
     }
 
     public function cetakrekap(Request $request){
+        $adminId = Auth::guard('admin')->user()->id_admin;
         $bulan = $request->bulan;
         $tahun = $request->tahun;
         $bln = array(
@@ -402,7 +410,8 @@ class PresensiController extends Controller
         }else if($jmlhari == 28){
             array_push($rangetanggal, NULL, NULL, NULL);
         }
-        $query = Karyawan::query();
+        $query = Karyawan::query()
+        ->where('id_admin', $adminId);
         $query->selectRaw(
             "$field_date karyawan.nik,nama_lengkap,pangkat"
         );
@@ -483,13 +492,6 @@ class PresensiController extends Controller
             DB::rollback();
             return Redirect::back()->with(['error' => 'Data Gagal di Update']);
         }
-
-        //$update = DB::table('pengajuan_izin')->where('id', $kode_izin)->update(['status_approved' => $status_approved]);
-        //if($update){
-        //    return redirect('/presensi/izinsakit')->with(['success' => 'Data Berhasil di Update']);
-        // }else{
-        //     return redirect('/presensi/izinsakit')->with(['error' => 'Data Gagal di Update']);
-        // }
     }
 
     public function batalkanizin($kode_izin){

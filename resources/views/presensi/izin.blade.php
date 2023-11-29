@@ -13,9 +13,15 @@
 <style>
     .historicontent {
         display: flex;
+        gap: 1px;
+        margin-top: 15px;
     }
     .datapresensi {
         margin-left: 10px;
+    }
+    .status {
+        position: absolute;
+        right: 20px;
     }
 </style>
 <!-- * App Header -->
@@ -73,10 +79,10 @@
             </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <button class="btn btn-primary btn-block">Cari Data</button>
-                </div>
-            </div>
+    <div class="col-12">
+        <button class="btn btn-primary btn-block">Cari Data</button>
+    </div>
+</div>
         </form>
     </div>
 </div>
@@ -91,7 +97,7 @@
         @endif
     </div>
 </div>
-<div class="row">
+<div class="row" style="position: fixed; width: 100%; margin: auto; overflow-y:scroll; height: 430px">
     <div class="col">
         @foreach($dataizin as $d)
         @php
@@ -146,26 +152,6 @@
                 </div>
             </div>
         </div>
-            {{--  <ul class="listview image-listview">
-                <li>
-                    <div class="item">
-                        <div class="in">
-                            <div>
-                                <b>{{ date("d-m-Y",strtotime($d->tgl_izin_dari)) }}</b><br>
-                                <small class="text-muted">{{ $d->status== "s" ? "Sakit" : "Izin" }}</small>
-                                <small>{{ $d->keterangan }}</small>
-                            </div>
-                            @if($d->status_approved == 0)
-                                <span class="badge bg-warning">Menunggu Persetujuan</span>
-                            @elseif($d->status_approved == 1)
-                                <span class="badge bg-success">Disetujui</span>
-                            @elseif($d->status_approved == 2)
-                                <span class="badge bg-danger">Ditolak</span>
-                            @endif
-                        </div>
-                    </div>
-                </li>
-            </ul> --}}
         @endforeach
     </div>
 </div>
