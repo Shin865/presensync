@@ -6,13 +6,16 @@ use App\Models\Jabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class JabatanController extends Controller
 {
     public function index(Request $request)
     {
+        $idAdmin = $request->session()->get('id_admin');
         $nama_jab = $request->nama_jab;
         $query = Jabatan::query();
+        $query->where('jabatan.id_admin', $idAdmin);
         $query->select('*');
         if(!empty($nama_jab)){
             $query->where('nama_jab','like','%'.$request->nama_jab.'%');
@@ -23,10 +26,12 @@ class JabatanController extends Controller
     }
 
     public function store(Request $request){
+        $idAdmin = $request->session()->get('id_admin');
         $kode_jab = $request->kode_jab;
         $nama_jab = $request->nama_jab;
         $data = array(
             'kode_jab' =>$kode_jab,
+            'id_admin' => $idAdmin,
             'nama_jab' =>$nama_jab
         );
         $cek = DB::table('jabatan')->where('kode_jab',$kode_jab)->count();
@@ -42,14 +47,17 @@ class JabatanController extends Controller
     }
 
     public function edit(Request $request){
+        $idAdmin = $request->session()->get('id_admin');
         $kode_jab = $request->kode_jab;
         $jabatan = DB::table('jabatan')->where('kode_jab',$kode_jab)->first();
         return view('jabatan.edit',compact('jabatan'));
     }
 
     public function update($kode_jab,Request $request){
+        $idAdmin = $request->session()->get('id_admin');
         $nama_jab = $request->nama_jab;
         $data = array(
+            'id_admin' => $idAdmin,
             'nama_jab' =>$nama_jab
         );
         $update = DB::table('jabatan')->where('kode_jab',$kode_jab)->update($data);

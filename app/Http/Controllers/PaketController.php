@@ -70,10 +70,22 @@ class PaketController extends Controller
     public function bukti()
     {
         $bukti = DB::table('pembayaran')
+        ->orderBy('tgl_upload', 'desc')
         ->paginate(3);
         return view('paket.bukti', compact('bukti'));
     }
 
+    public function statusmitra(Request $request){
+        $id_form = $request->id_form;
+        $status = $request->status;
+        $update = DB::table('admins')->where('id_admin', $id_form)->update(['status' => $status]);
+        if($update){
+            return redirect('/control/dashboardcontrol')->with(['success' => 'Data Berhasil di Update']);
+         }else{
+             return redirect('/control/dashboardcontrol')->with(['error' => 'Data Gagal di Update']);
+         }
+    }
+    
     public function deletebukti($id_pembayaran){
         $delete = DB::table('pembayaran')->where('id_pembayaran',$id_pembayaran)->delete();
         if($delete){

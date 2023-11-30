@@ -217,6 +217,14 @@
                                 <td>{{ $item->paket }}</td>
                                 <td>
                                   <div class="btn-group">
+                                    <a href="#" class="btn btn-sm btn-primary approvemitra" id_admin="{{ $item->id_admin }}">
+                                      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                          <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"></path>
+                                          <path d="M11 13l9 -9"></path>
+                                          <path d="M15 4h5v5"></path>
+                                       </svg>
+                                      </a>
                                      <form action="/control/{{ $item->id_pembayaran }}/deletebukti" method="POST" style="margin-left:5px">
                                       @csrf
                                       <a class="btn btn-danger btn-sm delete-confirm"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -241,7 +249,46 @@
                   </div>
                 </div>
             </div>
-            
+            <div class="modal modal-blur fade" id="modal-mitra" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Mitra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <form action="/dashboardcontrol/statusmitra" method="POST">
+                          @csrf
+                          <input type="hidden" id="id_form" name="id_form">
+                          <div class="row">
+                              <div class="col-12">
+                                  <div class="form-group">
+                                      <select name="status" id="status" class="form-select">
+                                          <option value="Y">Aktif</option>
+                                          <option value="N">Tidak Aktif</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-12">
+                                  <div class="form-group mt-2">
+                                      <button type="submit" class="btn btn-primary w-100">
+                                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                              <path d="M10 14l11 -11"></path>
+                                              <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"></path>
+                                           </svg>
+                                           Submit
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 
         <!-- Page body -->
         
@@ -269,6 +316,12 @@
 
     <script>
       $(function() {
+        $('.approvemitra').click(function(e){
+              e.preventDefault();
+              var id_admin = $(this).attr('id_admin');
+              $('#id_form').val(id_admin);
+              $('#modal-mitra').modal('show');
+          });
           $(".delete-confirm").click(function(e){
             var form = $(this).closest("form");
             e.preventDefault();
