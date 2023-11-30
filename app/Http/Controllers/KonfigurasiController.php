@@ -10,24 +10,30 @@ class KonfigurasiController extends Controller
 {
     public function lokasikantor()
     {
-        $lok_kantor = DB::table('konfigurasi_lokasi')->where('id', 1)->first();
+        $id_admin = session('id_admin');
+
+        // Gunakan id admin untuk mengambil data lokasi
+        $lok_kantor = DB::table('admins')->where('id_admin', $id_admin)->first();
+    
         return view('konfigurasi.lokasikantor', compact('lok_kantor'));
     }
 
     public function updatelokkantor(Request $request){
-        $lokasi_kantor = $request->lokasi_kantor;
-        $radius = $request->radius;
+    $id_admin = session('id_admin');  
+    $lokasi_kantor = $request->lokasi_kantor;
+    $radius = $request->radius;
 
-        $update = DB::table('konfigurasi_lokasi')
-        ->where('id', 1)
+    $update = DB::table('admins')
+        ->where('id_admin', $id_admin)
         ->update([
             'lokasi_kantor' => $lokasi_kantor,
             'radius' => $radius
         ]);
-        if($update){
-            return Redirect::back()->with('success', 'Lokasi kantor berhasil diubah');
-        }else{
-            return Redirect::back()->with('error', 'Lokasi kantor gagal diubah');
-        }
+
+    if ($update) {
+        return Redirect::back()->with('success', 'Lokasi kantor berhasil diubah');
+    } else {
+        return Redirect::back()->with('error', 'Lokasi kantor gagal diubah');
+    }
     }
 }

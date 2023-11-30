@@ -15,11 +15,25 @@ class PresensiController extends Controller
 {
     public function create()
     {
-        $harini = date('Y-m-d');
         $nik = Auth::guard('karyawan')->user()->nik;
-        $cek = DB::table('presensi')->where('nik', $nik)->where('tgl_presensi', $harini)->count();
-        $lok_kantor = DB::table('konfigurasi_lokasi')->where('id', 1)->first();
-        return view('presensi.create', compact('cek','lok_kantor'));
+    
+        // Ambil karyawan dari model Karyawan
+        $karyawan = Karyawan::where('nik', $nik)->first();
+    
+        // Pastikan karyawan ditemukan
+        if ($karyawan) {
+            // Gunakan relasi untuk mendapatkan admin terkait
+            $lok_kantor = $karyawan->admin;
+    
+            // Check presensi dan tgl_presensi seperti sebelumnya
+            $harini = date('Y-m-d');
+            $cek = DB::table('presensi')->where('nik', $nik)->where('tgl_presensi', $harini)->count();
+    
+            return view('presensi.create', compact('cek', 'lok_kantor'));
+        } else {
+            // Handle jika karyawan tidak ditemukan
+            return redirect()->back()->with('error', 'Karyawan tidak ditemukan');
+        }
     }
 
     public function store(Request $request)
@@ -27,8 +41,9 @@ class PresensiController extends Controller
        $nik = Auth::guard('karyawan')->user()->nik;
        $tgl_presensi = date('Y-m-d');
        $jam = date('H:i:s');
+       $admin = DB::table('admins')->leftJoin('karyawan','admins.id_admin','=','karyawan.id_admin')->where('nik', $nik)->first()->id_admin;
        //lokasi Kantor
-       $lok_kantor = DB::table('konfigurasi_lokasi')->where('id', 1)->first();
+       $lok_kantor = DB::table('admins')->where('id_admin',$admin)->first();
        $lok = explode(',', $lok_kantor->lokasi_kantor);
        $latitudekantor = $lok[0];
        $longitudekantor = $lok[1];
