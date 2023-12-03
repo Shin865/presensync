@@ -86,9 +86,8 @@
             <span id="title">
             REKAP PRESENSI KARYAWAN<br>
             PERIODE {{ strtoupper($bln[$bulan]) }} {{ $tahun }}<br>
-            PT. HIU TERBANG<br>
+            {{ $admin->nama_admin }}<br>
             </span>
-            <span style="mt-1"><i>Jln. Concat</i></span>
         </td>
     </tr>
    </table>
@@ -161,20 +160,13 @@
     @endforeach
    </table>
 
-    <table width="100%" style="margin-top:100px">
+   <table width="100%" style="margin-top:100px; margin-left:800px">
         <tr>
-            <td></td>
-            <td style="text-align: center">Yogyakarta, {{ date('d-m-Y') }}</td>
-        </tr>
-        <tr>
-            <td style="text-align: center; vertical-align:bottom" height="100px">
-                <u>Calorina Pavlofa</u><br>
-                <i><b>HRD Manager</b></i>
-            </td>
-            <td style="text-align: center; vertical-align:bottom" height="100px">
-                <u>SentoMaru</u><br>
-                <i><b>IT Manager</b></i>
-            </td>
+            <td colspan="2" style="text-align: left">Yogyakarta, {{ date('d') }} {{ ($bln[$bulan]) }} {{ $tahun }}<br>
+            Kepala Sekolah
+            <br><br><br><br><br>
+            ............................................
+        </td>
         </tr>
     </table>
   </section>

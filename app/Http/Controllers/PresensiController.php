@@ -322,6 +322,7 @@ class PresensiController extends Controller
         $karyawan = DB::table('karyawan')->where('nik',$nik)
         ->join('jabatan','jabatan.kode_jab','=','karyawan.kode_jab')
         ->first();
+        $admin = DB::table('admins')->where('id_admin',$karyawan->id_admin)->first();
         $presensi = DB::table('presensi')
         ->select('presensi.*','keterangan')
         ->leftJoin('pengajuan_izin','presensi.kode_izin','=','pengajuan_izin.kode_izin')
@@ -351,7 +352,7 @@ class PresensiController extends Controller
             return view('presensi.cetaklaporan',compact ('presensi','bln','karyawan','bulan','tahun'));
         }
 
-        return view('presensi.cetaklaporan',compact ('presensi','bln','karyawan','bulan','tahun'));
+        return view('presensi.cetaklaporan',compact ('presensi','bln','karyawan','bulan','tahun','admin'));
     }
 
     public function rekap(){
@@ -378,6 +379,7 @@ class PresensiController extends Controller
         $adminId = Auth::guard('admin')->user()->id_admin;
         $bulan = $request->bulan;
         $tahun = $request->tahun;
+        $admin = DB::table('admins')->where('id_admin',$adminId)->first();
         $bln = array(
             1 => 'Januari',
             2 => 'Februari',
@@ -453,7 +455,7 @@ class PresensiController extends Controller
             header("Content-Disposition: attachment; filename=Rekap Presensi ".$bln[$bulan]." ".$tahun." ".$time.".xls");
         }
 
-        return view('presensi.cetakrekap',compact ('rekap','bln','bulan','tahun','jmlhari','rangetanggal'));
+        return view('presensi.cetakrekap',compact ('rekap','bln','bulan','tahun','jmlhari','rangetanggal','admin'));
     }
 
     public function izinsakit(Request $request){

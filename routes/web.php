@@ -81,6 +81,8 @@ Route::middleware('auth:karyawan')->group(function () {
     Route::get('/presensi/buatizin', [PresensiController::class, 'buatizin']);
     Route::post('/presensi/storeizin', [PresensiController::class, 'storeizin']);
     Route::post('/presensi/cekizin', [PresensiController::class, 'cekizin']);
+    Route::get('/izin/{kode_izin}/showact', [PresensiController::class, 'showact']);
+    Route::get('/izin/{kode_izin}/delete', [PresensiController::class, 'deleteizin']);
 
     Route::get('/izinabsen', [IzinAbsenController::class, 'create']);
     Route::post('/izinabsen/store', [IzinAbsenController::class, 'store']);
@@ -97,8 +99,7 @@ Route::middleware('auth:karyawan')->group(function () {
     Route::get('/izincuti/{kode_izin}/edit', [IzinAbsenController::class, 'editcuti']);
     Route::post('/izincuti/{kode_izin}/update', [IzinAbsenController::class, 'updatecuti']);
 
-    Route::get('/izin/{kode_izin}/showact', [PresensiController::class, 'showact']);
-    Route::get('/izin/{kode_izin}/delete', [PresensiController::class, 'deleteizin']);
+    
 });
 
 Route::middleware('auth:admin')->group(function () {
@@ -121,10 +122,13 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/presensi/monitoring', [PresensiController::class, 'monitoring']);
     Route::post('/getpresensi', [PresensiController::class, 'getpresensi']);
     Route::post('/showmap',[PresensiController::class,'showmap']);
+
     Route::get('/presensi/laporan', [PresensiController::class, 'laporan']);
     Route::post('/presensi/cetaklaporan', [PresensiController::class, 'cetaklaporan']);
+
     Route::get('/presensi/rekap', [PresensiController::class, 'rekap']);
     Route::post('/presensi/cetakrekap', [PresensiController::class, 'cetakrekap']);
+    
     Route::get('/presensi/izinsakit', [PresensiController::class, 'izinsakit']);
     Route::post('/presensi/approveizin', [PresensiController::class, 'approveizin']);
     Route::get('/presensi/{kode_izin}/batalkanizin', [PresensiController::class, 'batalkanizin']);
