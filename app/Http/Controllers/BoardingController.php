@@ -45,7 +45,7 @@ class BoardingController extends Controller
             );
             $simpan = DB::table('admins')->insert($data);
             if($simpan){
-                return redirect('boarding/pembayaran1')->with('success','Silahkan lakukan pembayaran untuk pengaktifan akun');
+                return redirect('/pembayaran1')->with('success','Silahkan lakukan pembayaran untuk pengaktifan akun');
             }else{
                 return Redirect::back()->with('error','Data gagal disimpan');
             }
@@ -53,17 +53,18 @@ class BoardingController extends Controller
             $tgl_expired = date('Y-m-d', strtotime('+6 month', strtotime($tgl_daftar)));
         }
         $data = array(
-            'nama_admin' =>$nama_admin,
-            'email' =>$email,
-            'password' =>$password,
-            'kode_paket' =>$kode_paket,
-            'tgl_daftar' =>$tgl_daftar,
-            'tgl_expired' =>$tgl_expired,
+                'id_admin' =>$id_admin, 
+                'nama_admin' =>$nama_admin,
+                'email' =>$email,
+                'password' =>$password,
+                'kode_paket' =>$kode_paket,
+                'tgl_daftar' =>$tgl_daftar,
+                'tgl_expired' =>$tgl_expired,
             
         );
         $simpan = DB::table('admins')->insert($data);
         if($simpan){
-            return redirect('boarding/pembayaran2')->with('success','Silahkan lakukan pembayaran untuk pengaktifan akun');
+            return redirect('/pembayaran2')->with('success','Silahkan lakukan pembayaran untuk pengaktifan akun');
         }else{
             return Redirect::back()->with('error','Data gagal disimpan');
         }
@@ -74,7 +75,7 @@ class BoardingController extends Controller
     }
 
     public function pembayaran2(){
-        return view('boarding.pembayaran');
+        return view('boarding.pembayaran2');
     }
 
     public function pembayaranpaket1(Request $request){
@@ -102,7 +103,7 @@ class BoardingController extends Controller
                   $folderPath = "public/uploads/bukti/";
                   $request->file('bukti')->storeAs($folderPath, $bukti);
                }
-               return redirect('boarding/akun')->with('success','Pembayaran sukses, silahkan tunggu konfirmasi dari admin');
+               return redirect('/akun')->with('success','Pembayaran sukses, silahkan tunggu konfirmasi dari admin');
             }    
         }catch(\Exception $e){
             return Redirect::back()->with(['error' => 'Data Gagal di Simpan']);
@@ -114,21 +115,26 @@ class BoardingController extends Controller
         $bukti = $nama_mitra.".".$request->file('bukti')->getClientOriginalExtension();
         $paket = '6 Bulan';
         $tgl_upload = date('Y-m-d');
-        try{
-           $data = array(
-               'nama_mitra' =>$nama_mitra,
-               'email' =>$email,
-               'bukti' =>$bukti,
-               'paket' =>$paket,
+        $kode_id = explode('@', $email);
+        $kode = $kode_id[0];
+        $format = "ID_".$kode;
+        $id_admin = $format;
+         try{
+            $data = array(
+                'id_admin' =>$id_admin,
+                'nama_mitra' =>$nama_mitra,
+                'email' =>$email,
+                'bukti' =>$bukti,
+                'paket' =>$paket,
                 'tgl_upload' =>$tgl_upload,
-           );
+            );
             $simpan = DB::table('pembayaran')->insert($data);
             if($simpan){
                if($request->hasFile('bukti')){
                   $folderPath = "public/uploads/bukti/";
                   $request->file('bukti')->storeAs($folderPath, $bukti);
                }
-               return redirect('boarding/akun')->with('success','Pembayaran sukses, silahkan tunggu konfirmasi dari admin');
+               return redirect('/akun')->with('success','Pembayaran sukses, silahkan tunggu konfirmasi dari admin');
             }    
         }catch(\Exception $e){
             return Redirect::back()->with(['error' => 'Data Gagal di Simpan']);

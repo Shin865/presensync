@@ -139,7 +139,7 @@
                             buttons: false,
                             timer: 2000
                         }).then(function() {
-                            window.location = "/";
+                            window.location = "/dashboard";
                         });
                     }else{
                         swal.fire({

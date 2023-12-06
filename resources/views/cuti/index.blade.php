@@ -211,7 +211,7 @@
     });
 
     $(".delete-confirm").click(function(e){
-      var form = $(this).closest("form");
+      var form = $(this).closest("form"); 
       e.preventDefault();
       Swal.fire({
         title: 'Yakin ?',

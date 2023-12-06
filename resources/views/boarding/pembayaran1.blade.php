@@ -81,7 +81,7 @@
                 </div>
               <div class="row">
                 <div class="col-12">
-                  <form action="/boarding/pembayaranpaket1" id="formregis" method="POST" enctype="multipart/form-data">
+                  <form action="/pembayaranpaket1" id="formregis" method="POST" enctype="multipart/form-data">
                      @csrf 
                      <div class="row">
                       <div class="col-6">
@@ -139,7 +139,7 @@
                          <p style="color: crimson">Bayar menggunakan link dibawah ini</p>
                       <img src="{{ asset('/tabler/static/saweria.png')}}" width="300" height="290" >
                       <br>
-                      <center><a href="https://saweria.co/JukiKun">Saweria</a></center>
+                      <center><a href="https://saweria.co/JukiKun" target="_blank" rel="noopener noreferrer"  >Saweria</a></center>
                     </div>
                 </div>
             </div>

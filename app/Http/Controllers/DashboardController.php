@@ -27,11 +27,16 @@ class DashboardController extends Controller
         ->where('presensi.nik', $nik)
         ->whereRaw('MONTH(tgl_presensi) ="'.$bulanini.'"')
         ->whereRaw('YEAR(tgl_presensi) ="'.$tahunini.'"')
-        ->orderBy('tgl_presensi')
+        ->orderBy('tgl_presensi','desc')
         ->get();
         
         $rekappresensi = DB::table('presensi')
-        ->selectRaw('COUNT(nik) as jmlhadir, SUM(IF(jam_in > "07:00",1,0)) as jmltelat')
+        ->selectRaw('
+        SUM(IF(status="h",1,0)) as jmlhadir,
+        SUM(IF(status="i",1,0)) as jmlizin,
+        SUM(IF(status="s",1,0)) as jmlsakit,
+        SUM(IF(status="c",1,0)) as jmlcuti,
+        SUM(IF(jam_in > "07:00",1,0)) as jmltelat')
         ->where('nik', $nik)
         ->whereRaw('MONTH(tgl_presensi) ="'.$bulanini.'"')
         ->whereRaw('YEAR(tgl_presensi) ="'.$tahunini.'"')
@@ -39,7 +44,9 @@ class DashboardController extends Controller
 
         $daftarhadir = DB::table('presensi')
         ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
+        ->leftJoin('admins', 'karyawan.id_admin', '=', 'admins.id_admin')
         ->orderBy('jam_in', 'ASC')
+        ->where('karyawan.id_admin', Auth::guard('karyawan')->user()->id_admin)
         ->where('tgl_presensi', $hariini)
         ->get();
         $bln = array(
@@ -57,16 +64,8 @@ class DashboardController extends Controller
             12 => 'Desember'
         );
 
-        $rekapizin = DB::table('pengajuan_izin')
-        ->selectRaw('SUM(IF(status="i",1,0)) as jmlizin, SUM(IF(status="s",1,0)) as jmlsakit')
-        ->where('nik', $nik)
-        ->whereRaw('MONTH(tgl_izin_dari) ="'.$bulanini.'"')
-        ->whereRaw('YEAR(tgl_izin_dari) ="'.$tahunini.'"')
-        ->where('status_approved', 1)
-        ->first();
-
         return view('dashboard.dashboard',compact ('presensihariini','historibulan','bln',
-        'bulanini','tahunini','rekappresensi','daftarhadir','rekapizin'));
+        'bulanini','tahunini','rekappresensi','daftarhadir'));
     }
 
     public function dashboardadmin(){
@@ -82,27 +81,26 @@ class DashboardController extends Controller
                 // Inisialisasi variabel untuk menyimpan hasil rekapan
                 $rekappresensi = [
                     'jmlhadir' => 0,
-                    'jmltelat' => 0,
                 ];
                 $rekapizin = [
                     'jmlizin' => 0,
                     'jmlsakit' => 0,
+                    'jmlcuti' => 0,
                 ];
             
                 // Loop melalui karyawan dan tambahkan rekapan mereka
                 foreach ($karyawans as $karyawan) {
                     $presensi = DB::table('presensi')
-                        ->selectRaw('COUNT(nik) as jmlhadir, SUM(IF(jam_in > "07:00",1,0)) as jmltelat')
+                        ->selectRaw('SUM(IF(status="h",1,0)) as jmlhadir, SUM(IF(jam_in > "07:00",1,0)) as jmltelat')
                         ->where('tgl_presensi', $hariini)
                         ->where('nik', $karyawan->nik)
                         ->first();
             
                     // Tambahkan rekapan presensi karyawan
                     $rekappresensi['jmlhadir'] += $presensi->jmlhadir;
-                    $rekappresensi['jmltelat'] += $presensi->jmltelat;
             
                     $izin = DB::table('pengajuan_izin')
-                        ->selectRaw('SUM(IF(status="i",1,0)) as jmlizin, SUM(IF(status="s",1,0)) as jmlsakit')
+                        ->selectRaw('SUM(IF(status="i",1,0)) as jmlizin, SUM(IF(status="s",1,0)) as jmlsakit,SUM(IF(status="c",1,0)) as jmlcuti')
                         ->where('tgl_izin_dari', $hariini)
                         ->where('nik', $karyawan->nik)
                         ->where('status_approved', 1)
@@ -111,22 +109,22 @@ class DashboardController extends Controller
                     // Tambahkan rekapan izin karyawan
                     $rekapizin['jmlizin'] += $izin->jmlizin;
                     $rekapizin['jmlsakit'] += $izin->jmlsakit;
+                    $rekapizin['jmlcuti'] += $izin->jmlcuti;
                 }
             
                 return view('dashboard.dashboardadmin', compact('rekappresensi', 'rekapizin'));
     }
 
     public function dashboardcontrol(Request $request){
-        $query = Admin::query();
-        $query->select('admins.*');
-        $query->orderBy('nama_admin');
+        $admin = DB::table('admins')
+        ->orderBy('nama_admin');
         if(!empty($request->nama_admin)){
-            $query->where('nama_admin','like','%'.$request->nama_admin.'%');
+            $admin = DB::table('admins')->where('nama_admin','like','%'.$request->nama_admin.'%');
         }
         if($request->status != ""){
-            $query->where('status', $request->status);
+            $admin = DB::table('admins')->where('status', $request->status);
         }
-        $admins = $query->paginate(5);
+        $admins = $admin->paginate(5);
         return view('dashboard.dashboardcontrol',compact('admins'));
     }
 

@@ -16,6 +16,8 @@ class JabatanController extends Controller
         $nama_jab = $request->nama_jab;
         $query = Jabatan::query();
         $query->where('jabatan.id_admin', $idAdmin);
+        $query->leftJoin('admins', 'jabatan.id_admin', '=', 'admins.id_admin');
+        $query->orderBy('nama_jab');
         $query->select('*');
         if(!empty($nama_jab)){
             $query->where('nama_jab','like','%'.$request->nama_jab.'%');
@@ -27,11 +29,13 @@ class JabatanController extends Controller
 
     public function store(Request $request){
         $idAdmin = $request->session()->get('id_admin');
+        $admin = DB::table('admins')->where('id_admin', $idAdmin)->first();
+        $id_admin = $admin->id_admin;
         $kode_jab = $request->kode_jab;
         $nama_jab = $request->nama_jab;
         $data = array(
             'kode_jab' =>$kode_jab,
-            'id_admin' => $idAdmin,
+            'id_admin' => $id_admin,
             'nama_jab' =>$nama_jab
         );
         $cek = DB::table('jabatan')->where('kode_jab',$kode_jab)->count();

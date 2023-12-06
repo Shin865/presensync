@@ -105,7 +105,7 @@
                     <div class="card">
                         <a href="/presensi/izin" style="color: black">
                         <div class="card-body text-center" style="padding: 16px 12px !important line-height:0.8rem">
-                            <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekapizin->jmlizin }}</span>
+                            <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekappresensi->jmlizin }}</span> 
                             <ion-icon name="document-text" style="font-size: 1.7rem" class="text-success mb-1"></ion-icon>
                             <br>
                             <span style="font-size: 0.8rem; font-weight:500">Izin</span>
@@ -117,8 +117,8 @@
                     <div class="card">
                         <a href="/presensi/izin" style="color: black">
                         <div class="card-body text-center" style="padding: 16px 12px !important line-height:0.8rem">
-                            <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekapizin->jmlsakit }}</span>
-                            <ion-icon name="medkit" style="font-size: 1.7rem" class="text-warning mb-1"></ion-icon>
+                            <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekappresensi->jmlsakit }}</span>
+                            <ion-icon name="medkit" style="font-size: 1.7rem" class="text-danger mb-1"></ion-icon>
                             <br>
                             <span style="font-size: 0.8rem; font-weight:500">Sakit</span>
                         </div>
@@ -127,12 +127,12 @@
                 </div>
                 <div class="col-3">
                     <div class="card">
-                        <a href="/presensi/histori" style="color: black">
+                        <a href="/presensi/izin" style="color: black">
                         <div class="card-body text-center" style="padding: 16px 12px !important line-height:0.8rem">
-                            <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekappresensi->jmltelat }}</span>
-                            <ion-icon name="alarm" style="font-size: 1.7rem" class="text-danger mb-1"></ion-icon>
+                            <span class="badge bg-danger" style="position: absolute; top:0%; right:1%; font-size:0.5rem; z-index:999">{{ $rekappresensi->jmlcuti }}</span>
+                            <ion-icon name="calendar" style="font-size: 1.7rem" class="text-warning mb-1"></ion-icon>
                             <br>
-                            <span style="font-size: 0.6rem; font-weight:500">Terlambat</span>
+                            <span style="font-size: 0.8rem; font-weight:500">Cuti</span>
                         </div>
                         </a>
                     </div>

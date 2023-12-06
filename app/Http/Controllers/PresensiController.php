@@ -55,7 +55,9 @@ class PresensiController extends Controller
        $jarak = $this->distance($latitudekantor, $longitudekantor, $latitudeuser, $longitudeuser);
        $radius = $jarak['meters'];
 
-       $cek = DB::table('presensi')->where('nik', $nik)->where('tgl_presensi', $tgl_presensi)->count();
+       $presensi= DB::table('presensi')->where('nik', $nik)->where('tgl_presensi', $tgl_presensi);
+       $cek = $presensi->count();
+       $datapresensi = $presensi->first(); 
        if($cek > 0){
                $ket = "out";
          }else{
@@ -74,6 +76,9 @@ class PresensiController extends Controller
         echo "error|Maaf Anda Berada Diluar Radius, Jarak Anda Dengan Kantor Adalah ".$radius." Meter";
        }else{
         if($cek > 0){
+            if(!empty($datapresensi->jam_out)){
+                echo "error|Maaf Anda Sudah Melakukan Presensi Pulang";
+            }
             $data_pulang = array(
                 'jam_out' => $jam,
                 'foto_out' => $filename,
@@ -459,9 +464,11 @@ class PresensiController extends Controller
     }
 
     public function izinsakit(Request $request){
+            $adminId = Auth::guard('admin')->user()->id_admin;
             $query = Pengajuanizin::query();
             $query->select('kode_izin','pengajuan_izin.nik','tgl_izin_dari','tgl_izin_sampai','status','keterangan','status_approved','nama_lengkap','pangkat');
             $query->join('karyawan','karyawan.nik','=','pengajuan_izin.nik');
+            $query->where('karyawan.id_admin', $adminId);
             if(!empty($request->dari) && !empty($request->sampai)){
                 $query->whereBetween('tgl_izin_dari', [$request->dari, $request->sampai]);
             }

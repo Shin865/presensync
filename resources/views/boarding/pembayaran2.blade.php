@@ -81,7 +81,7 @@
                 </div>
               <div class="row">
                 <div class="col-12">
-                  <form action="/boarding/pembayaranpaket2" id="formregis" method="POST" enctype="multipart/form-data">
+                  <form action="/pembayaranpaket2" id="formregis" method="POST" enctype="multipart/form-data">
                      @csrf 
                      <div class="row">
                       <div class="col-6">
@@ -129,17 +129,17 @@
                     <div class="card-body">
                       <div class="input-icon mb-2">
                         <p>Detail Pembayaran</p>
-                        <input type="text" id="paket" value="PAKET 3 BULAN" class="form-control" name="paket" placeholder="PAKET 6 BULAN" readonly>
+                        <input type="text" id="paket" value="PAKET 6 BULAN" class="form-control" name="paket" placeholder="PAKET 6 BULAN" readonly>
                          </div>
 
                          <div class="input-icon mb-1">
                         <input type="text" id="" value="Total Bayar" class="form-control" name="" placeholder="Total Bayar" readonly>
-                        <input type="text" id="" value="RP. 225.000" class="form-control" name="harga" placeholder="RP. 125.000" readonly>
+                        <input type="text" id="" value="RP. 225.000" class="form-control" name="harga" placeholder="RP. 225.000" readonly>
                          </div>
                          <p style="color: crimson">Bayar menggunakan link dibawah ini</p>
                       <img src="{{ asset('/tabler/static/saweria.png')}}" width="300" height="290" >
                       <br>
-                      <center><a href="https://saweria.co/JukiKun">Saweria</a></center>
+                      <center><a href="https://saweria.co/JukiKun" target="_blank" rel="noopener noreferrer">Saweria</a></center>
                     </div>
                 </div>
             </div>

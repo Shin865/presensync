@@ -46,12 +46,12 @@
       <!-- Nav Menu -->
       <nav id="navmenu" class="navmenu" style="margin-right:10%">
         <ul>
-          <li><a href="boarding" class="active">Beranda</a></li>
-          <li><a href="boarding#about">Tentang Kami</a></li>
-          <li><a href="boarding#harga">langganan</a></li>
-          <li><a href="boarding#tim">Team</a></li>
-          <li><a href="boarding#testimon">Testimoni</a></li>
-          <li><a href="boarding#footer">Contact</a></li>
+          <li><a href="#" class="active">Beranda</a></li>
+          <li><a href="#about">Tentang Kami</a></li>
+          <li><a href="#harga">langganan</a></li>
+          <li><a href="#tim">Team</a></li>
+          <li><a href="#testimon">Testimoni</a></li>
+       <!--   <li><a href="#footer">Contact</a></li> -->
         </ul>
 
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -94,7 +94,7 @@
 <p align="justify">Presensi manual pastinya membutuhkan banyak kertas dan juga membutuhkan proses yang lama dalam perekapan presensi tersebut,
      dengan Presensync, Anda bisa melakukan presensi secara lebih efisien dan cepat dalam proses hal perekapan data.
      anda hanya perlu membuka website dan melakukan presensi maka data presensi akan langsung masuk ke database,
-     selain itu admin dapat mengecek hasil presensi dan mengatur lokasi serta jarak ridus presensi dapat dilakukan.</p>
+     selain itu admin dapat mengecek hasil presensi dan mengatur lokasi serta jarak radius presensi dapat dilakukan.</p>
 </div>
 </div><!-- Features Item -->
 
@@ -185,7 +185,7 @@
             <li><i class="bi bi-check"></i> <span>Data Lokasi</span></li>
             <li><i class="bi bi-check"></i> <span>3 Bulan</span></li>
           </ul>
-          <div class="text-center"><a href="/boarding/akun" class="buy-btn">Pesan Sekarang</a></div>
+          <div class="text-center"><a href="/akun" class="buy-btn">Pesan Sekarang</a></div>
         </div>
       </div><!-- End Pricing Item -->
   
@@ -205,7 +205,7 @@
             <li><i class="bi bi-check"></i> <span>Data Lokasi</span></li>
             <li><i class="bi bi-check"></i> <span>6 Bulan</span></li>
           </ul>
-          <div class="text-center"><a href="/boarding/akun" class="buy-btn">Pesan Sekarang</a></div>
+          <div class="text-center"><a href="/akun" class="buy-btn">Pesan Sekarang</a></div>
         </div>
       </div><!-- End Pricing Item -->
   
@@ -236,7 +236,7 @@
           <div class="faq-item faq-active">
             <h3><span class="num">1.</span> <span>Mengapa PresenSync penting? </span></h3>
             <div class="faq-content">
-              <p>Kalau anda masih melakukan presensi secara manual pastinya anda tahu bahwa perekaan data serta waktu 
+              <p>Kalau anda masih melakukan presensi secara manual pastinya anda tahu bahwa perekapan data serta waktu 
                 pegawai presensi itu tidak fleksibel, ituleh terkadang anda perlu mengubah sistem yang lama menjadi sistem yang lebih baik lagi 
                 dengan menggunakan PresenSync</p>
             </div>
@@ -246,7 +246,8 @@
           <div class="faq-item">
             <h3><span class="num">2.</span> <span>Bagaimana cara menggunakan tool PresenSync ini? </span></h3>
             <div class="faq-content">
-              <p>anda hanya perlu membuka website dan melakukan presensi maka data presensi akan langsung masuk ke database, selain itu admin dapat mengecek hasil presensi dan mengatur lokasi serta jarak ridus presensi dapat dilakukan.</p>
+              <p>anda hanya perlu membuka website dan melakukan presensi maka data presensi akan langsung masuk ke database, 
+                selain itu admin dapat mengecek hasil presensi dan mengatur lokasi serta jarak radius presensi dapat dilakukan.</p>
             </div>
             <i class="faq-toggle bi bi-chevron-right"></i>
           </div><!-- End Faq item-->
@@ -254,7 +255,8 @@
           <div class="faq-item">
             <h3><span class="num">3.</span>Bagaimana Cara Berlangganan di website PresenSync?</span></h3>
             <div class="faq-content">
-              <p>Anda hanya perlu memilih paket langganan yang akan dipilih, setelah itu anda akan diminta untuk mengisi sebuah form untuk berlanggana,jika sudah pesanan anda akan diproses, dan akun anda akan dikonfirmasi setelah itu siap digunakan</p>
+              <p>Anda hanya perlu memilih paket langganan yang akan dipilih, setelah itu anda akan diminta untuk mengisi sebuah form untuk berlanggana,
+                jika sudah pesanan anda akan diproses, dan akun anda akan dikonfirmasi setelah itu siap digunakan</p>
             </div>
             <i class="faq-toggle bi bi-chevron-right"></i>
           </div><!-- End Faq item-->
@@ -326,7 +328,7 @@
         <h3>Testimoni</h3>
         <p>
           Testimoni di samping mencerminkan pengalaman nyata dari pengguna yang telah 
-          menggunakan websitePresenSync dan puas dengan hasilnya. Testimoni ini menunjukkan
+          menggunakan website PresenSync dan puas dengan hasilnya. Testimoni ini menunjukkan
            kegunaan website tersebut dalam meningkatkan efisiensi dan memberikan kesan positif kepada para pengguna.
         </p>
       </div>
@@ -354,10 +356,10 @@
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <div class="d-flex">
-                  <img src="assets/gambar/pic1.jpg" class="testimonial-img flex-shrink-0" alt="">
+                  <img src="assets/img/sample/avatar/avatar1.jpg" class="testimonial-img flex-shrink-0" alt="">
                   <div>
                     <h3>Anggi</h3>
-                    <h4>Fotografer</h4>
+                    <h4>Kepala Sekolah</h4>
                     <div class="stars">
                       <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                     </div>
@@ -365,7 +367,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Websitenya Praktis dan mudah digunakan, dijamain meningkatkan efisensi pekerjaan, nyesel kalau nggk coba</span>
+                  <span>Websitenya Praktis dan mudah digunakan, dijamain meningkatkan efisensi pekerjaan, nyesel kalau tidak  mencoba</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
@@ -374,10 +376,10 @@
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <div class="d-flex">
-                  <img src="assets/gambar/pic2.jpg" class="testimonial-img flex-shrink-0" alt="">
+                  <img src="assets/img/sample/avatar/avatar2.png" class="testimonial-img flex-shrink-0" alt="">
                   <div>
                     <h3>Nanat</h3>
-                    <h4>Designer grafis</h4>
+                    <h4>Guru</h4>
                     <div class="stars">
                       <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                     </div>
@@ -385,9 +387,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Saya sangat terkesan dengan kemampuan website PresenSync dalam meningkatkan kualitas gambar. 
-                    Saya memiliki beberapa foto lama yang buram dan kurang jelas, kemudian saya mengubah kualitasnya 
-                    menjadi lebih tinggi dengan satu kali klik saja.</span>
+                  <span>Aplikasi ini sangat mudah digunakan, cepat, dan akurat. sehingga saya tidak perlu repot-repot mengurus urusan melakukan pencatatan kehadiran pegawai secara manual lagi</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
@@ -396,10 +396,10 @@
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <div class="d-flex">
-                  <img src="assets/gambar/pic3.jpg" class="testimonial-img flex-shrink-0" alt="">
+                  <img src="assets/img/sample/avatar/avatar2.png" class="testimonial-img flex-shrink-0" alt="">
                   <div>
                     <h3>Panniw</h3>
-                    <h4>Store Owner</h4>
+                    <h4>Instansi Pendidikan</h4>
                     <div class="stars">
                       <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                     </div>
@@ -408,7 +408,7 @@
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
                   <span>Saya sangat merekomendasikan website ini kepada siapa pun 
-                    yang ingin meningkatkan kualitas gambar mereka dengan cepat dan mudah.</span>
+                    yang ingin meningkatkan kualitas pencatatan kehadiran pegawai mereka dengan cepat dan mudah.</span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
@@ -417,10 +417,10 @@
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <div class="d-flex">
-                  <img src="assets/gambar/pic4.jpg" class="testimonial-img flex-shrink-0" alt="">
+                  <img src="assets/img/sample/avatar/avatar1.jpg" class="testimonial-img flex-shrink-0" alt="">
                   <div>
                     <h3>Juki</h3>
-                    <h4>Freelancer</h4>
+                    <h4>instansi Pendidikan</h4>
                     <div class="stars">
                       <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                     </div>
@@ -428,8 +428,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Website ini membantu saya untuk meningkatkan kualitas gambar dengan mudah dan hasilnya memuaskan.
-                    Saya sangat merekomendasikan website ini kepada para profesional kreatif yang ingin meningkatkan kualitas gambar mereka.
+                  <span>Aplikasi ini sangat membantu saya dalam meningkatkan produktivitas dan efisiensi kerja saya.
                   </span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
@@ -439,10 +438,10 @@
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <div class="d-flex">
-                  <img src="assets/gambar/pic5.jpg" class="testimonial-img flex-shrink-0" alt="">
+                  <img src="assets/img/sample/avatar/avatar2.png" class="testimonial-img flex-shrink-0" alt="">
                   <div>
                     <h3>Depoy</h3>
-                    <h4>Entrepreneur</h4>
+                    <h4>Guru</h4>
                     <div class="stars">
                       <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                     </div>
@@ -450,9 +449,7 @@
                 </div>
                 <p>
                   <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Saya memiliki banyak foto keluarga yang buram dan usang, tetapi website ini memungkinkan 
-                    saya untuk menghidupkan kembali gambar-gambar tersebut. Hasilnya luar biasa! Gambar-gambar 
-                    tersebut sekarang tampak segar, jelas, dan penuh warna. </span>
+                  <span>Saya merekomendasikan aplikasi ini kepada semua orang yang ingin memudahkan proses presensi di tempat kerja. Terima kasih, aplikasi presensi!. </span>
                   <i class="bi bi-quote quote-icon-right"></i>
                 </p>
               </div>
@@ -472,7 +469,7 @@
    
   </main>
 
-  <!-- ======= Footer ======= -->
+  <!-- ======= Footer ======= 
   <footer id="footer" class="footer">
 
     <div class="container footer-top">
@@ -492,7 +489,7 @@
       </div>
     </div>
 
-  </footer><!-- End Footer -->
+  </footer><!-- End Footer -->-->
 
   <!-- Scroll Top Button -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
