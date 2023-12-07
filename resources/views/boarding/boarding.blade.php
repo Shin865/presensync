@@ -70,7 +70,7 @@
           <h2 data-aos="fade-up" data-aos-delay="100">Upgrade Sistem Presensi Sekolah Anda</h2>
           <p data-aos="fade-up" data-aos-delay="200">Sistem Presensi Masih Manual? Kini hadir PresenSync untuk membantu efisiensi sistem presensi sekolah anda</p>
           <br>
-          <a href="boarding#harga" class="btn btn-danger" style="padding: 10px;font-size:15px">
+          <a href="#harga" class="btn btn-danger" style="padding: 10px;font-size:15px">
             Langganan dan nikmati sekarang</a>
         </div>
         </div>
@@ -185,7 +185,7 @@
             <li><i class="bi bi-check"></i> <span>Data Lokasi</span></li>
             <li><i class="bi bi-check"></i> <span>3 Bulan</span></li>
           </ul>
-          <div class="text-center"><a href="/akun" class="buy-btn">Pesan Sekarang</a></div>
+          <div class="text-center"><a href="/boarding/akun" class="buy-btn">Pesan Sekarang</a></div>
         </div>
       </div><!-- End Pricing Item -->
   
@@ -205,7 +205,7 @@
             <li><i class="bi bi-check"></i> <span>Data Lokasi</span></li>
             <li><i class="bi bi-check"></i> <span>6 Bulan</span></li>
           </ul>
-          <div class="text-center"><a href="/akun" class="buy-btn">Pesan Sekarang</a></div>
+          <div class="text-center"><a href="/boarding/akun" class="buy-btn">Pesan Sekarang</a></div>
         </div>
       </div><!-- End Pricing Item -->
   

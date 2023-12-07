@@ -81,7 +81,7 @@
                 </div>
               <div class="row">
                 <div class="col-12">
-                  <form action="/pembayaranpaket2" id="formregis" method="POST" enctype="multipart/form-data">
+                  <form action="boarding/pembayaranpaket2" id="formregis" method="POST" enctype="multipart/form-data">
                      @csrf 
                      <div class="row">
                       <div class="col-6">

@@ -144,9 +144,9 @@ Route::middleware('auth:admin')->group(function () {
 });
 
     Route::get('/', [BoardingController::class, 'boarding']);
-    Route::get('/akun', [BoardingController::class, 'akun']);
-    Route::post('/register', [BoardingController::class, 'register']);
-    Route::get('/pembayaran1', [BoardingController::class, 'pembayaran1']);
-    Route::get('/pembayaran2', [BoardingController::class, 'pembayaran2']);
-    Route::post('/pembayaranpaket1', [BoardingController::class, 'pembayaranpaket1']);
-    Route::post('/pembayaranpaket2', [BoardingController::class, 'pembayaranpaket2']);
+    Route::get('/boarding/akun', [BoardingController::class, 'akun']);
+    Route::post('/boarding/register', [BoardingController::class, 'register']);
+    Route::get('/boarding/pembayaran1', [BoardingController::class, 'pembayaran1']);
+    Route::get('/boarding/pembayaran2', [BoardingController::class, 'pembayaran2']);
+    Route::post('/boarding/pembayaranpaket1', [BoardingController::class, 'pembayaranpaket1']);
+    Route::post('/boarding/pembayaranpaket2', [BoardingController::class, 'pembayaranpaket2']);

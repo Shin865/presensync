@@ -11,20 +11,15 @@ class CutiController extends Controller
     public function index(Request $request)
     {
         $idAdmin = $request->session()->get('id_admin');
-        $admin = DB::table('admins')->where('id_admin', $idAdmin)->first();
-        $id_admin = $admin->id_admin;
         $cuti = DB::table('master_cuti')
-        ->orderBy('kode_cuti')
-        ->where('id_admin', $id_admin)
-        ->get();
+        ->where('id_admin', $idAdmin)
+        ->orderBy('kode_cuti')->get();
         return view('cuti.index', compact('cuti'));
     }
 
     public function store(Request $request)
     {
         $idAdmin =$request->session()->get('id_admin');
-        $admin = DB ::table('admins')->where('id_admin', $idAdmin)->first();
-        $id_admin = $admin->id_admin;
         $kode_cuti = $request->kode_cuti;
         $nama_cuti = $request->nama_cuti;
         $jml_hari = $request->jml_hari;
@@ -36,7 +31,7 @@ class CutiController extends Controller
         try {
             DB::table('master_cuti')->insert([
                 'kode_cuti' => $kode_cuti,
-                'id_admin' => $id_admin,
+                'id_admin' => $idAdmin,
                 'nama_cuti' => $nama_cuti,
                 'jml_hari' => $jml_hari
             ]);
@@ -48,7 +43,6 @@ class CutiController extends Controller
 
     public function edit(Request $request)
     {
-        $idAdmin =$request->session()->get('id_admin');
         $kode_cuti = $request->kode_cuti;
         $cuti = DB::table('master_cuti')->where('kode_cuti', $kode_cuti)->first();
         return view('cuti.edit', compact('cuti'));

@@ -11,10 +11,7 @@ class KonfigurasiController extends Controller
     public function lokasikantor()
     {
         $id_admin = session('id_admin');
-
-        // Gunakan id admin untuk mengambil data lokasi
         $lok_kantor = DB::table('admins')->where('id_admin', $id_admin)->first();
-    
         return view('konfigurasi.lokasikantor', compact('lok_kantor'));
     }
 

@@ -14,6 +14,7 @@ class KaryawanController extends Controller
 {
     public function index(Request $request)
     {
+       
         $idAdmin = $request->session()->get('id_admin');
         $query = Karyawan::query();
         $query->select('karyawan.*', 'nama_jab');
@@ -21,7 +22,7 @@ class KaryawanController extends Controller
         $query->leftJoin('jabatan', 'karyawan.kode_jab', '=', 'jabatan.kode_jab');
         $query->leftJoin('admins', 'karyawan.id_admin', '=', 'admins.id_admin');
         $query->where('karyawan.id_admin', $idAdmin);
-        
+
         $jabatan = DB::table('jabatan')
         ->where('id_admin', $idAdmin)
         ->get();
@@ -37,11 +38,10 @@ class KaryawanController extends Controller
         return view('karyawan.index',compact('karyawan','jabatan'));
     }
 
+
     public function store(Request $request)
     {
         $idAdmin =$request->session()->get('id_admin');
-        $admin = DB::table('admins')->where('id_admin', $idAdmin)->first();
-        $id_admin = $admin->id_admin;
         $nik = $request->nik;
         $nama_lengkap = $request->nama_lengkap;
         $pangkat = $request->pangkat;
@@ -56,7 +56,7 @@ class KaryawanController extends Controller
          try{
             $data = array(
                 'nik' =>$nik,
-                'id_admin' => $id_admin,
+                'id_admin' => $idAdmin,
                 'nama_lengkap' =>$nama_lengkap,
                 'pangkat' => $pangkat,
                 'no_hp' => $no_hp,

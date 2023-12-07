@@ -78,7 +78,7 @@
                              echo '<div class="alert alert-danger">'.Session::get('error').'</div>';
                            }
                           @endphp
-                          <form action="/register" id="formregis" method="POST">
+                          <form action="/boarding/register" id="formregis" method="POST">
                             @csrf
                               <div class="row">
                                 <div class="col-12">

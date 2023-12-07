@@ -6,7 +6,6 @@ use App\Models\Jabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Auth;
 
 class JabatanController extends Controller
 {
@@ -29,13 +28,11 @@ class JabatanController extends Controller
 
     public function store(Request $request){
         $idAdmin = $request->session()->get('id_admin');
-        $admin = DB::table('admins')->where('id_admin', $idAdmin)->first();
-        $id_admin = $admin->id_admin;
         $kode_jab = $request->kode_jab;
         $nama_jab = $request->nama_jab;
         $data = array(
+            'id_admin' =>$idAdmin,
             'kode_jab' =>$kode_jab,
-            'id_admin' => $id_admin,
             'nama_jab' =>$nama_jab
         );
         $cek = DB::table('jabatan')->where('kode_jab',$kode_jab)->count();
@@ -51,17 +48,14 @@ class JabatanController extends Controller
     }
 
     public function edit(Request $request){
-        $idAdmin = $request->session()->get('id_admin');
         $kode_jab = $request->kode_jab;
         $jabatan = DB::table('jabatan')->where('kode_jab',$kode_jab)->first();
         return view('jabatan.edit',compact('jabatan'));
     }
 
     public function update($kode_jab,Request $request){
-        $idAdmin = $request->session()->get('id_admin');
         $nama_jab = $request->nama_jab;
         $data = array(
-            'id_admin' => $idAdmin,
             'nama_jab' =>$nama_jab
         );
         $update = DB::table('jabatan')->where('kode_jab',$kode_jab)->update($data);
