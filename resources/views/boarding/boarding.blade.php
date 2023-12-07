@@ -38,7 +38,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
         <span><img src="{{ asset('tabler/static/logo.png') }}" alt="image" class="form-image"></span>
         <h1>PresenSync</h1>
       </a>
