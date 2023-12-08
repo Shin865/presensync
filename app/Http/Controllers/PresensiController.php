@@ -277,13 +277,14 @@ class PresensiController extends Controller
     }
 
     public function getpresensi(Request $request){
-        $adminId = Auth::guard('admin')->user()->id_admin;
+        $adminId = session()->get('id_admin');
         $tanggal = $request->tanggal;
         $presensi = DB::table('presensi')->select('presensi.*','nama_lengkap','nama_jab','keterangan')
         ->leftJoin('pengajuan_izin','presensi.kode_izin','=','pengajuan_izin.kode_izin')
         ->join('karyawan','karyawan.nik','=','presensi.nik')
+        ->leftJoin('admins','karyawan.id_admin','=','admins.id_admin')
         ->join('jabatan','jabatan.kode_jab','=','karyawan.kode_jab')
-        ->where('id_admin', $adminId)
+        ->where('karyawan.id_admin', $adminId)
         ->where('tgl_presensi', $tanggal)
         ->get();
 

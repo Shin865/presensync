@@ -97,7 +97,7 @@
         @endif
     </div>
 </div>
-<div class="row" style="position: fixed; width: 100%; margin: auto; overflow-y:scroll; height: 430px">
+<div class="row" style="position: fixed; width: 100%; margin: auto; overflow-y:scroll; height: 680px">
     <div class="col">
         @foreach($dataizin as $d)
         @php

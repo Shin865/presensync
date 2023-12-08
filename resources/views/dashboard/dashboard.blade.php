@@ -180,7 +180,7 @@
                                     <span style="margin-left: 5px !important">{{ $d->jam_out != null ? $d->jam_out : 'Belum Absen'}}</span>
                                     <br>
                                     <span>
-                                        @if($d->jam_in >= '07:00')
+                                        @if($d->jam_in >= '08:00')
                                         <span class="text-danger">Terlambat</span>
                                         @else
                                         <span class="text-success">Tepat Waktu</span>
@@ -257,7 +257,7 @@
                                         {{ $d->nama_lengkap }}
                                         <small class="text-muted">{{ $d->pangkat }}</small>
                                     </div>
-                                    <span class="badge {{ $d->jam_in < "07:00" ? "bg-success" : "bg-danger" }}">{{ $d->jam_in }}</span>
+                                    <span class="badge {{ $d->jam_in < "08:00" ? "bg-success" : "bg-danger" }}">{{ $d->jam_in }}</span>
                                 </div>
                             </div>
                             @endforeach

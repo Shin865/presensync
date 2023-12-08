@@ -30,7 +30,7 @@
                  <span style="margin-left: 5px !important">{{ $d->jam_out != null ? $d->jam_out : 'Belum Absen'}}</span>
                  <br>
                  <span>
-                     @if($d->jam_in >= '07:00')
+                     @if($d->jam_in >= '08:00')
                      <span class="text-danger">Terlambat</span>
                      @else
                       <span class="text-success">Tepat Waktu</span>
@@ -75,7 +75,10 @@
          </div>
      </div>
  </div>
- @elseif ($d->status == "c")   <div class="card mb-1">       <div class="card-body">           <div class="historicontent">
+ @elseif ($d->status == "c")   
+ <div class="card mb-1">       
+    <div class="card-body">           
+        <div class="historicontent">
               <div class="iconpresensi">
                   <ion-icon name="calendar-outline" style="font-size: 48px;" class="text-warning"></ion-icon>
               </div>

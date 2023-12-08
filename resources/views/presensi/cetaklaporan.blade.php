@@ -141,7 +141,7 @@
             @php
                 $path_in = Storage::url('uploads/absensi/'.$item->foto_in);
                 $path_out = Storage::url('uploads/absensi/'.$item->foto_out);
-                $jamtelat = selisih('07:00:00', $item->jam_in);
+                $jamtelat = selisih('08:00:00', $item->jam_in);
             @endphp
                 <tr>
                  <td>{{ $loop->iteration }}</td>
@@ -165,7 +165,7 @@
                 </td>
                 <td style="text-align: center">{{ $item->status }}</td>
                  <td>
-                    @if ($item->jam_in > '07:00:00')
+                    @if ($item->jam_in > '08:00:00')
                         Terlambat ({{ $jamtelat }})
                     @else
                         Tepat Waktu

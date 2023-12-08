@@ -36,7 +36,7 @@ class DashboardController extends Controller
         SUM(IF(status="i",1,0)) as jmlizin,
         SUM(IF(status="s",1,0)) as jmlsakit,
         SUM(IF(status="c",1,0)) as jmlcuti,
-        SUM(IF(jam_in > "07:00",1,0)) as jmltelat')
+        SUM(IF(jam_in > "08:00",1,0)) as jmltelat')
         ->where('nik', $nik)
         ->whereRaw('MONTH(tgl_presensi) ="'.$bulanini.'"')
         ->whereRaw('YEAR(tgl_presensi) ="'.$tahunini.'"')
@@ -91,7 +91,7 @@ class DashboardController extends Controller
                 // Loop melalui karyawan dan tambahkan rekapan mereka
                 foreach ($karyawans as $karyawan) {
                     $presensi = DB::table('presensi')
-                        ->selectRaw('SUM(IF(status="h",1,0)) as jmlhadir, SUM(IF(jam_in > "07:00",1,0)) as jmltelat')
+                        ->selectRaw('SUM(IF(status="h",1,0)) as jmlhadir, SUM(IF(jam_in > "08:00",1,0)) as jmltelat')
                         ->where('tgl_presensi', $hariini)
                         ->where('nik', $karyawan->nik)
                         ->first();

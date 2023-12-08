@@ -45,9 +45,9 @@
     </td>
     <td><span class="badge bg-success" style="color: white">Hadir</span></td>
     <td>
-        @if($d->jam_in >= '07:00')
+        @if($d->jam_in >= '08:00')
         <?php
-            $jamtelat = selisih('07:00:00', $d->jam_in);
+            $jamtelat = selisih('08:00:00', $d->jam_in);
         ?>
         <span class="badge bg-danger" style="color: white">Telat ({{ $jamtelat }})</span>
         @else
