@@ -32,7 +32,7 @@
 @section('content')
 <div class="row" style="margin-top: 5%">
    <div class="col">
-        <input type="text" id="lokasi">
+        <input type="hidden" id="lokasi">
         <div class="webcame-capture"></div>
    </div>
 </div>
