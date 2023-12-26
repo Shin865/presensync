@@ -151,7 +151,12 @@ class IzinAbsenController extends Controller
 
     public function createcuti()
     {
-        $mastercuti = DB::table('master_cuti')->orderBy('kode_cuti')->get();
+        $nik = Auth::guard('karyawan')->user()->nik;
+        $mastercuti = DB::table('master_cuti')
+        ->leftJoin('admins', 'master_cuti.id_admin', '=', 'admins.id_admin')
+        ->where('master_cuti.id_admin', Auth::guard('karyawan')->user()->id_admin)
+        ->orderBy('kode_cuti')
+        ->get();
         return view('izin.createcuti', compact('mastercuti'));
     }
 

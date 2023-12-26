@@ -56,7 +56,7 @@
             <div class="form-group">
                 <select name="kode_cuti" id="kode_cuti" class="form-control">
                     <option value="">Pilih Jenis Cuti</option>
-                    @foreach($mastercuti as $d)
+                    @foreach( $mastercuti as $d)
                     <option value="{{ $d->kode_cuti }}">{{ $d->nama_cuti }}</option>
                     @endforeach
                 </select>

@@ -178,7 +178,7 @@ class PresensiController extends Controller
         $nik = Auth::guard('karyawan')->user()->nik;
         $historibulan = DB::table('presensi')
         ->where('nik', $nik)
-        ->orderBy('tgl_presensi')
+        ->orderBy('tgl_presensi','DESC')
         ->get();
         $bln = array(
             1 => 'Januari',
@@ -194,7 +194,7 @@ class PresensiController extends Controller
             11 => 'November',
             12 => 'Desember'
         );
-        return view('presensi.histori',compact ('historibulan','bln',));
+        return view('presensi.histori',compact ('historibulan','bln'));
      }
 
      public function gethistori(Request $request){
@@ -208,7 +208,7 @@ class PresensiController extends Controller
         ->where('presensi.nik', $nik)
         ->whereRaw('MONTH(tgl_presensi) ="'.$bulan.'"')
         ->whereRaw('YEAR(tgl_presensi) ="'.$tahun.'"')
-        ->orderBy('tgl_presensi')
+        ->orderBy('tgl_presensi','desc')
         ->get();
 
         return view('presensi.gethistori',compact ('histori'));
@@ -355,7 +355,6 @@ class PresensiController extends Controller
             $time = date('H:i:s');
             header("Content-type: application/vnd.ms-word");
             header("Content-Disposition: attachment; filename=Rekap Presensi ".$nik." ".$bln[$bulan]." ".$tahun." ".$time.".doc");
-            return view('presensi.cetaklaporan',compact ('presensi','bln','karyawan','bulan','tahun'));
         }
 
         return view('presensi.cetaklaporan',compact ('presensi','bln','karyawan','bulan','tahun','admin'));
