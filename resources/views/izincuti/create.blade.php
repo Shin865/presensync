@@ -34,7 +34,7 @@
             <ion-icon name="chevron-back-outline"></ion-icon>
         </a>
     </div>
-    <div class="pageTitle">Formulir Izin Absen</div>
+    <div class="pageTitle">Formulir Izin Cuti</div>
     <div class="right"></div>
 </div>
 <!-- * App Header -->

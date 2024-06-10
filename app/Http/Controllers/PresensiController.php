@@ -89,7 +89,7 @@ class PresensiController extends Controller
                 echo "success|Terimakasih, Anda telah melakukan presensi pulang|out";
                 Storage::put($file, $image_base64);
              }else{
-                 echo "error|Maaf Absensi gagal dilakukan|out";
+                 echo "error|Maaf Presensi gagal dilakukan|out";
              }
        }else{
         $data = array(
@@ -105,7 +105,7 @@ class PresensiController extends Controller
                echo "success|Terimakasih, Anda telah melakukan presensi masuk|in";
                Storage::put($file, $image_base64);
             }else{
-                echo "error|Maaf Absensi gagal dilakukan|in";
+                echo "error|Maaf Presensi gagal dilakukan|in";
             }
        }
     }

@@ -188,8 +188,7 @@
                                     </a>
                                     @endif
                                 </td>
-                            </tr>
-                            
+                            </tr>   
                         @endforeach
                 </table>
                 {{ $izinsakit->links('vendor.pagination.bootstrap-5') }}

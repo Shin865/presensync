@@ -149,7 +149,7 @@
                  <td>{{ $item->jam_in }}</td>
                  <td>
                     <img src="{{ url($path_in) }}" alt="" class="foto"></td>
-                 <td>{{ $item->jam_out != null ? $item->jam_out : 'Belum Absen' }}</td>
+                 <td>{{ $item->jam_out != null ? $item->jam_out : 'Belum Presensi' }}</td>
                  <td>
                     @if ($item->jam_out != null)
                         <img src="{{ url($path_out) }}" alt="" class="foto">

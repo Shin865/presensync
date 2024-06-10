@@ -50,9 +50,9 @@ Route::middleware(['guest:user'])->group(function () {
 Route::middleware('auth:user')->group(function () {
     Route::get('control/dashboardcontrol', [DashboardController::class, 'dashboardcontrol']);
     Route::post('/control/{id_admin}/delete', [DashboardController::class, 'delete']);
-
     Route::get('/proseslogoutcontrol', [AuthController::class, 'proseslogoutcontrol']);
     Route::post('/dashboardcontrol/statusmitra', [DashboardController::class, 'statusmitra']);
+    
     Route::get('/dashboardcontrol/paket', [PaketController::class, 'index']);
     Route::post('/paket/store', [PaketController::class, 'store']);
     Route::post('/paket/edit', [PaketController::class, 'edit']);

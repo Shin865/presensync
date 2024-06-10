@@ -29,7 +29,7 @@
     <td>
         <img src="{{ url($foto_in) }}" class="avatar">
     </td>
-    <td>{!! $d->jam_out != null ? $d->jam_out : '<span class="badge bg-danger" style="color: white">Belum Absen</span>' !!}</td>
+    <td>{!! $d->jam_out != null ? $d->jam_out : '<span class="badge bg-danger" style="color: white">Belum Presensi</span>' !!}</td>
     <td>
         @if ($d->jam_out != null)
         <img src="{{ url($foto_out) }}" class="avatar">
@@ -48,8 +48,11 @@
         @if($d->jam_in >= '08:00')
         <?php
             $jamtelat = selisih('08:00:00', $d->jam_in);
+            $pecah = explode(":",$jamtelat);
+            $jam = $pecah[0];
+            $menit = $pecah[1];
         ?>
-        <span class="badge bg-danger" style="color: white">Telat ({{ $jamtelat }})</span>
+        <span class="badge bg-danger" style="color: white">Telat ({{ $jam }}) Jam ({{ $menit }}) Menit</span>
         @else
         <span class="badge bg-success" style="color: white">Tepat Waktu</span>
         @endif

@@ -27,7 +27,7 @@
                   <h4 style="margin: 0px !important">{{ date("d-m-Y",strtotime($d->tgl_presensi)) }}</h4>
                   <span style="margin-right: 5px !important">{{ $d->jam_in }}</span>
                   <span> - </span>
-                 <span style="margin-left: 5px !important">{{ $d->jam_out != null ? $d->jam_out : 'Belum Absen'}}</span>
+                 <span style="margin-left: 5px !important">{{ $d->jam_out != null ? $d->jam_out : 'Belum Presensi'}}</span>
                  <br>
                  <span>
                      @if($d->jam_in >= '08:00')

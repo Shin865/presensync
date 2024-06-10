@@ -41,11 +41,11 @@
         @if($cek > 0)
         <button id="takeabsen" class="btn btn-danger btn-block btn-lg">
             <ion-icon name="camera-outline"></ion-icon>
-            Absen Pulang</button>
+            Presensi Pulang</button>
         @else
         <button id="takeabsen" class="btn btn-primary btn-block btn-lg">
             <ion-icon name="camera-outline"></ion-icon>
-            Absen Masuk</button>
+            Presensi Masuk</button>
         @endif
     </div>
 </div>
